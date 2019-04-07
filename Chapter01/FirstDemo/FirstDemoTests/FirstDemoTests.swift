@@ -23,6 +23,14 @@ class FirstDemoTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
+    
+    func test_NumberOfVowels_WhenPassedDominik_ReturnsThree() {
+        let viewController = ViewController()
+        let string = "Dominik"
+        let numberOfVowels = viewController.numberOfVowels(in: string)
+        XCTAssertEqual(numberOfVowels, 3,
+                       "should find 3 vowels in Dominik")
+    }
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
