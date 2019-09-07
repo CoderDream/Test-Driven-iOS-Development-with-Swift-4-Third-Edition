@@ -17,7 +17,7 @@ Test Case '-[FirstDemoTests.FirstDemoTests test_NumberOfVowels_WhenPassedDominik
 Test Case '-[FirstDemoTests.FirstDemoTests testExample]' started.
 Test Case '-[FirstDemoTests.FirstDemoTests testExample]' passed (0.001 seconds).
 Test Case '-[FirstDemoTests.FirstDemoTests testPerformanceExample]' started.
-/Users/coderdream/Documents/GitHub/Test-Driven-iOS-Development-with-Swift-4-Third-Edition/Chapter01/FirstDemo/FirstDemoTests/FirstDemoTests.swift:37: 
+/../Chapter01/FirstDemo/FirstDemoTests/FirstDemoTests.swift:37: 
 Test Case '-[FirstDemoTests.FirstDemoTests testPerformanceExample]' measured [Time, seconds] 
 average: 0.000, relative standard deviation: 76.181%, 
 values: [0.000005, 0.000002, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001], 
