@@ -1,0 +1,111 @@
+# Table of Contents
+- Preface 1
+## Chapter 1: Your First Unit Tests 6
+- Building your first automatic unit test 7
+- What are unit tests? 8
+- Implementing a unit test example 8
+- Important built-in assert functions 13
+- Understanding TDD 16
+- The TDD workflow - red, green, and refactor 18
+- Red 18
+- Green 18
+- Refactor 18
+- TDD in Xcode 19
+- An example of TDD 20
+- Red - example 1 20
+- Green - example 1 22
+- Refactor - example 1 22
+- Red - example 2 23
+- Green - example 2 23
+- Refactor - example 2 24
+- A recap 25
+- Finding information about tests in Xcode 26
+- Test Navigator 26
+- Tests overview 27
+- Running tests 29
+- Running one specific test 29
+- Running all tests in a test case 30
+- Running a group of tests 30
+- The setUp() and tearDown() methods 31
+- Debugging tests 32
+- Breakpoint that breaks on test failure 33
+- The test again feature 35
+- The advantages of TDD 35
+- The disadvantages of TDD 36
+- What to test 37
+- Summary 37
+## Chapter 2: Planning and Structuring Your Test-Driven iOS App 38
+- The task list view 39
+- The task detail view 41
+- The task input view 42
+- The structure of the app 43
+- The table view controller, the delegate, and the data source 44
+- Table view cells 44
+- The model 44
+- Other view controllers 45
+- The development strategy 45
+- Getting started with Xcode 45
+- Setting up useful Xcode behaviors for testing 47
+- Useful build behaviors 47
+- Testing behaviors 49
+- Summary 50
+## Chapter 3: A Test-Driven Data Model 51
+- Implementing the ToDoItem struct 52
+- Adding a title property 52
+- Adding an itemDescription property 54
+- Removing a hidden source of bugs 55
+- Adding a timestamp property 57
+- Adding a location property 58
+- Implementing the Location struct 59
+- Adding a coordinate property 59
+- Implementing the ItemManager class 62
+- Count 62
+- Adding and checking items 64
+- Equatable 70
+- Removing all items 81
+- Ensuring uniqueness 83
+- Summary 83
+## Chapter 4: A Test-Driven View Controller 84
+- Implementing ItemListViewController 85
+- Implementing ItemListDataProvider 95
+- Conducting the first tests 95
+- Fake objects 101
+- Using mocks 102
+- Checking and unchecking items 113
+- Implementing ItemCell 115
+- Implementing DetailViewController 122
+- Implementing InputViewController 128
+- Summary 134
+## Chapter 5: Testing Network Code 135
+- Implementing tests using a web service 136
+- Implementing a login request 139
+- Handling errors 150
+- Summary 154
+## Chapter 6: Putting It All Together 155
+- Connecting parts 156
+- The initial view controller 156
+- Showing the input view 157
+- Showing the detail view 166
+- Serialization and deserialization 170
+- Functional tests 178
+- Adding a UI test target 178
+- Recording and testing 179
+- Summary 185
+## Chapter 7: Code Coverage 187
+- Enabling code coverage 187
+- Code coverage in Xcode 188
+- How much code coverage is enough? 191
+- Automatic deployment with fastlane 192
+- Installing fastlane 192
+- Setting up 192
+- Summary 193
+## Chapter 8: Where to Go from Here 195
+- What you have learned so far 195
+- Integration tests 196
+- UI tests 196
+- Behavior-Driven Development 197
+- TDD in existing projects 198
+- Generating mocks with Sourcery 199
+- More information about TDD 200
+- Summary 201
+- Index 202
