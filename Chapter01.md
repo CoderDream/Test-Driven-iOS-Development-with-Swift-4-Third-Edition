@@ -2,12 +2,17 @@
 # Chapter01
 
 
-- fix problem
+
+- Fix problem:  
 	- Swift version from 5.0 to 4.2
 	- Target from 12.2 to 12.1 
 
 
-- Console  
+- Running Unit Test:  
+	- Menu: Product - Test
+	- Keys: Command + U
+
+- Console output:   
 ```
 Test Suite 'Selected tests' started at 2019-09-07 16:41:01.185
 Test Suite 'FirstDemoTests.xctest' started at 2019-09-07 16:41:01.187
