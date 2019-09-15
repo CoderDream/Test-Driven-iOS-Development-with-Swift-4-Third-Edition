@@ -98,11 +98,80 @@ Test Suite 'All tests' passed at 2019-09-15 17:45:30.590.
 
 
 
+- 把3修改为4，失败：
+```swift
+XCTAssertEqual(numberOfVowels, 4,
+                       "should find 4 vowels in Dominik")
+
+XCTAssertEqual failed: ("3") is not equal to ("4") - should find 4 vowels in Dominik
+```
+
+- 控制台的出错信息：
+```swift
+Test Suite 'All tests' started at 2019-09-15 19:44:47.130
+Test Suite 'FirstDemoTests.xctest' started at 2019-09-15 19:44:47.138
+Test Suite 'FirstDemoTests' started at 2019-09-15 19:44:47.139
+Test Case '-[FirstDemoTests.FirstDemoTests test_NumberOfVowels_WhenPassedDominik_ReturnsThree]' started.
+/.../FirstDemo/FirstDemoTests/FirstDemoTests.swift:31: error: -[FirstDemoTests.FirstDemoTests test_NumberOfVowels_WhenPassedDominik_ReturnsThree] : 
+XCTAssertEqual failed: ("3") is not equal to ("4") - should find 4 vowels in Dominik
+Test Case '-[FirstDemoTests.FirstDemoTests test_NumberOfVowels_WhenPassedDominik_ReturnsThree]' failed (0.106 seconds).
+Test Case '-[FirstDemoTests.FirstDemoTests testExample]' started.
+Test Case '-[FirstDemoTests.FirstDemoTests testExample]' passed (0.002 seconds).
+Test Case '-[FirstDemoTests.FirstDemoTests testPerformanceExample]' started.
+/.../FirstDemo/FirstDemoTests/FirstDemoTests.swift:37: Test Case '-[FirstDemoTests.FirstDemoTests testPerformanceExample]' measured [Time, seconds] average: 0.000, 
+relative standard deviation: 75.297%, 
+values: [0.000004, 0.000002, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001], performanceMetricID:com.apple.XCTPerformanceMetric_WallClockTime, 
+baselineName: "", 
+baselineAverage: , 
+maxPercentRegression: 10.000%, 
+maxPercentRelativeStandardDeviation: 10.000%, 
+maxRegression: 0.100, 
+maxStandardDeviation: 0.100
+Test Case '-[FirstDemoTests.FirstDemoTests testPerformanceExample]' passed (0.483 seconds).
+Test Suite 'FirstDemoTests' failed at 2019-09-15 19:44:47.736.
+	 Executed 3 tests, with 1 failure (0 unexpected) in 0.591 (0.597) seconds
+Test Suite 'FirstDemoTests.xctest' failed at 2019-09-15 19:44:47.737.
+	 Executed 3 tests, with 1 failure (0 unexpected) in 0.591 (0.599) seconds
+Test Suite 'All tests' failed at 2019-09-15 19:44:47.742.
+	 Executed 3 tests, with 1 failure (0 unexpected) in 0.591 (0.612) seconds
+```
+
+
+
+
 - TODO
 ```swift
 
 
 ```
+
+
+
+
+- TODO
+```swift
+
+
+```
+
+
+
+
+- TODO
+```swift
+
+
+```
+
+
+
+
+- TODO
+```swift
+
+
+```
+
 
 
 

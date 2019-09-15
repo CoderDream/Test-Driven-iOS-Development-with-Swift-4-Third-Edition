@@ -27,5 +27,16 @@ class ViewController: UIViewController {
         return numberOfVowels
     }
     
+//    func numberOfVowels(in string: String) -> Int {
+//        let vowels: [Character] = ["a", "e", "i", "o", "u",
+//                                   "A", "E", "I", "O", "U"]
+//        // 'characters' is deprecated: Please use String or Substring directly
+//        //console.log(string.reduce(0))
+//        print(string.reduce(0))
+//        return string.reduce(0) {
+//            $0 + (vowels.contains($1) ? 1 : 0)
+//        }
+//    }
+    
 }
 
