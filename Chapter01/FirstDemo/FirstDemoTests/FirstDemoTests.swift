@@ -11,7 +11,11 @@ import XCTest
 
 class FirstDemoTests: XCTestCase {
 
+    var viewController: ViewController!
+    
     override func setUp() {
+        super.setUp()
+        viewController = ViewController()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
@@ -25,7 +29,6 @@ class FirstDemoTests: XCTestCase {
     }
     
     func test_NumberOfVowels_WhenPassedDominik_ReturnsThree() {
-        let viewController = ViewController()
         let string = "Dominik"
         let numberOfVowels = viewController.numberOfVowels(in: string)
         XCTAssertEqual(numberOfVowels, 3,
@@ -33,7 +36,6 @@ class FirstDemoTests: XCTestCase {
     }
     
     func test_MakeHeadline_ReturnsStringWithEachWordStartCapital() {
-        let viewController = ViewController()
         let string = "this is A test headline"
         let headline = viewController.makeHeadline(from: string)
         XCTAssertEqual(headline, "This Is A Test Headline")

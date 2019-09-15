@@ -188,20 +188,51 @@ Test Suite 'All tests' passed at 2019-09-15 21:46:19.565.
 	 Executed 4 tests, with 0 failures (0 unexpected) in 0.601 (0.620) seconds
 ```
 
+## Refactor - example 1
 
-- TODO
+重构，把视图控制器作为变量抽取出来，然后在setUp方法里初始化，然后去掉每个测试方法中的视图控制器变量。
+
+- FirstDemoTests
 ```swift
+var viewController: ViewController!
 
-
+override func setUp() {
+    super.setUp()
+    viewController = ViewController()
+}
 ```
 
-
-
-
-- TODO
-```swift
-
-
+- 执行结果，控制台：
+```
+Test Suite 'All tests' started at 2019-09-15 22:28:42.582
+Test Suite 'FirstDemoTests.xctest' started at 2019-09-15 22:28:42.584
+Test Suite 'FirstDemoTests' started at 2019-09-15 22:28:42.585
+Test Case '-[FirstDemoTests.FirstDemoTests test_MakeHeadline_ReturnsStringWithEachWordStartCapital]' started.
+Test Case '-[FirstDemoTests.FirstDemoTests test_MakeHeadline_ReturnsStringWithEachWordStartCapital]' passed (0.061 seconds).
+Test Case '-[FirstDemoTests.FirstDemoTests test_NumberOfVowels_WhenPassedDominik_ReturnsThree]' started.
+Test Case '-[FirstDemoTests.FirstDemoTests test_NumberOfVowels_WhenPassedDominik_ReturnsThree]' passed (0.012 seconds).
+Test Case '-[FirstDemoTests.FirstDemoTests testExample]' started.
+Test Case '-[FirstDemoTests.FirstDemoTests testExample]' passed (0.002 seconds).
+Test Case '-[FirstDemoTests.FirstDemoTests testPerformanceExample]' started.
+/.../FirstDemo/FirstDemoTests/FirstDemoTests.swift:46: 
+Test Case '-[FirstDemoTests.FirstDemoTests testPerformanceExample]' 
+measured [Time, seconds] average: 0.000, 
+relative standard deviation: 123.310%, 
+values: [0.000013, 0.000004, 0.000002, 0.000002, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001], 
+performanceMetricID:com.apple.XCTPerformanceMetric_WallClockTime, 
+baselineName: "Local Baseline", 
+baselineAverage: 0.000, 
+maxPercentRegression: 10.000%, 
+maxPercentRelativeStandardDeviation: 10.000%, 
+maxRegression: 0.100, 
+maxStandardDeviation: 0.100
+Test Case '-[FirstDemoTests.FirstDemoTests testPerformanceExample]' passed (0.570 seconds).
+Test Suite 'FirstDemoTests' passed at 2019-09-15 22:28:43.235.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.644 (0.649) seconds
+Test Suite 'FirstDemoTests.xctest' passed at 2019-09-15 22:28:43.236.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.644 (0.652) seconds
+Test Suite 'All tests' passed at 2019-09-15 22:28:43.237.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.644 (0.655) seconds
 ```
 
 
