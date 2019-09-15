@@ -138,32 +138,55 @@ Test Suite 'All tests' failed at 2019-09-15 19:44:47.742.
 
 
 
-
-- TODO
+## Green - example 1
+- ViewController中的方法
 ```swift
-
-
+func makeHeadline(from string: String) -> String {
+    return "This Is A Test Headline"
+}
 ```
 
-
-
-
-- TODO
+- 测试方法
 ```swift
-
-
+func test_MakeHeadline_ReturnsStringWithEachWordStartCapital() {
+    let viewController = ViewController()
+    let string = "this is A test headline"
+    let headline = viewController.makeHeadline(from: string)
+    XCTAssertEqual(headline, "This Is A Test Headline")
+}
 ```
 
-
-
-
-- TODO
+- 测试结果
 ```swift
-
-
+Test Suite 'All tests' started at 2019-09-15 21:46:18.945
+Test Suite 'FirstDemoTests.xctest' started at 2019-09-15 21:46:18.947
+Test Suite 'FirstDemoTests' started at 2019-09-15 21:46:18.948
+Test Case '-[FirstDemoTests.FirstDemoTests test_MakeHeadline_ReturnsStringWithEachWordStartCapital]' started.
+Test Case '-[FirstDemoTests.FirstDemoTests test_MakeHeadline_ReturnsStringWithEachWordStartCapital]' passed (0.038 seconds).
+Test Case '-[FirstDemoTests.FirstDemoTests test_NumberOfVowels_WhenPassedDominik_ReturnsThree]' started.
+Test Case '-[FirstDemoTests.FirstDemoTests test_NumberOfVowels_WhenPassedDominik_ReturnsThree]' passed (0.013 seconds).
+Test Case '-[FirstDemoTests.FirstDemoTests testExample]' started.
+Test Case '-[FirstDemoTests.FirstDemoTests testExample]' passed (0.001 seconds).
+Test Case '-[FirstDemoTests.FirstDemoTests testPerformanceExample]' started.
+/.../FirstDemo/FirstDemoTests/FirstDemoTests.swift:44: Test Case '-[FirstDemoTests.FirstDemoTests testPerformanceExample]' 
+measured [Time, seconds] average: 0.000, 
+relative standard deviation: 64.061%, 
+values: [0.000012, 0.000008, 0.000004, 0.000003, 0.000003, 0.000003, 0.000003, 0.000003, 0.000003, 0.000003], 
+performanceMetricID:com.apple.XCTPerformanceMetric_WallClockTime, 
+baselineName: "Local Baseline", 
+baselineAverage: 0.000, 
+maxPercentRegression: 10.000%, 
+maxPercentRelativeStandardDeviation: 10.000%, 
+maxRegression: 0.100, 
+maxStandardDeviation: 0.100
+Test Case '-[FirstDemoTests.FirstDemoTests testPerformanceExample]' passed (0.549 seconds).
+Test Suite 'FirstDemoTests' passed at 2019-09-15 21:46:19.555.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.601 (0.607) seconds
+Test Suite 'FirstDemoTests.xctest' passed at 2019-09-15 21:46:19.560.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.601 (0.613) seconds
+Test Suite 'All tests' passed at 2019-09-15 21:46:19.565.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.601 (0.620) seconds
 ```
-
-
 
 
 - TODO

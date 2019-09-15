@@ -28,8 +28,15 @@ class FirstDemoTests: XCTestCase {
         let viewController = ViewController()
         let string = "Dominik"
         let numberOfVowels = viewController.numberOfVowels(in: string)
-        XCTAssertEqual(numberOfVowels, 4,
-                       "should find 4 vowels in Dominik")
+        XCTAssertEqual(numberOfVowels, 3,
+                       "should find 3 vowels in Dominik")
+    }
+    
+    func test_MakeHeadline_ReturnsStringWithEachWordStartCapital() {
+        let viewController = ViewController()
+        let string = "this is A test headline"
+        let headline = viewController.makeHeadline(from: string)
+        XCTAssertEqual(headline, "This Is A Test Headline")
     }
 
     func testPerformanceExample() {
