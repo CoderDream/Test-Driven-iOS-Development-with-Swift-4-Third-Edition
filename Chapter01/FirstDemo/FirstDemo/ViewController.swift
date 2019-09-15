@@ -37,6 +37,8 @@ class ViewController: UIViewController {
 //            $0 + (vowels.contains($1) ? 1 : 0)
 //        }
 //    }
-    
+    func makeHeadline(from string: String) -> String {
+        return "This Is A Test Headline"
+    }
 }
 
