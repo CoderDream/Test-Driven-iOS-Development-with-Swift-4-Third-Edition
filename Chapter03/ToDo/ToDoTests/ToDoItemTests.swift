@@ -19,13 +19,16 @@ class ToDoItemTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func test_Init_TakesTitle() {
+    func test_Init_WhenGivenTitle_SetsTitle() {
         let item = ToDoItem(title: "Foo")
-        XCTAssertNotNil(item, "item should not be nil")
+        XCTAssertEqual(item.title, "Foo",
+                       "should set title")
     }
 
-    func test_Init_TakesTitleAndDescription() {
-        _ = ToDoItem(title: "Foo",
-                     itemDescription: "Bar")
+    func test_Init_WhenGivenDescription_SetsDescription() {
+        let item = ToDoItem(title: "",
+                            itemDescription: "Bar")
+        XCTAssertEqual(item.itemDescription, "Bar",
+                       "should set itemDescription")
     }
 }

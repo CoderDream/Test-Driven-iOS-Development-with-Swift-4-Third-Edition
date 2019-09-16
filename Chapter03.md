@@ -96,6 +96,41 @@ Test Suite 'All tests' passed at 2019-09-16 23:01:27.270.
 	 Executed 2 tests, with 0 failures (0 unexpected) in 0.051 (0.060) seconds
 ```
 
+## Removing a hidden source of bugs
+
+- ToDoItemTests.swift
+```swift
+func test_Init_WhenGivenTitle_SetsTitle() {
+    let item = ToDoItem(title: "Foo")
+    XCTAssertEqual(item.title, "Foo",
+                   "should set title")
+}
+
+func test_Init_WhenGivenDescription_SetsDescription() {
+    let item = ToDoItem(title: "",
+                        itemDescription: "Bar")
+    XCTAssertEqual(item.itemDescription, "Bar",
+                   "should set itemDescription")
+}
+```
+
+- 控制台
+```swift
+Test Suite 'All tests' started at 2019-09-16 23:08:14.798
+Test Suite 'ToDoTests.xctest' started at 2019-09-16 23:08:14.799
+Test Suite 'ToDoItemTests' started at 2019-09-16 23:08:14.800
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenDescription_SetsDescription]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenDescription_SetsDescription]' passed (0.031 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenTitle_SetsTitle]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenTitle_SetsTitle]' passed (0.001 seconds).
+Test Suite 'ToDoItemTests' passed at 2019-09-16 23:08:14.836.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.032 (0.036) seconds
+Test Suite 'ToDoTests.xctest' passed at 2019-09-16 23:08:14.838.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.032 (0.038) seconds
+Test Suite 'All tests' passed at 2019-09-16 23:08:14.839.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.032 (0.041) seconds
+```
+
 
 - TODO
 ```swift
