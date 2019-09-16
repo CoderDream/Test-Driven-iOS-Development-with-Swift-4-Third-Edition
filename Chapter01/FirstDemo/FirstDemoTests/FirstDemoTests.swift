@@ -40,6 +40,12 @@ class FirstDemoTests: XCTestCase {
         let headline = viewController.makeHeadline(from: string)
         XCTAssertEqual(headline, "This Is A Test Headline")
     }
+    
+    func test_MakeHeadline_ReturnsStringWithEachWordStartCapital2() {
+        let string = "Here is another Example"
+        let headline = viewController.makeHeadline(from: string)
+        XCTAssertEqual(headline, "Here Is Another Example")
+    }
 
     func testPerformanceExample() {
         // This is an example of a performance test case.

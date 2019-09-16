@@ -235,33 +235,80 @@ Test Suite 'All tests' passed at 2019-09-15 22:28:43.237.
 	 Executed 4 tests, with 0 failures (0 unexpected) in 0.644 (0.655) seconds
 ```
 
+## Green - example 2
+
+增加新方法
+
+- FirstDemoTests
+```
+func test_MakeHeadline_ReturnsStringWithEachWordStartCapital2() {
+    let string = "Here is another Example"
+    let headline = viewController.makeHeadline(from: string)
+    XCTAssertEqual(headline, "Here Is Another Example")
+}
+```
+
+
+- ViewController
+```swift
+func makeHeadline(from string: String) -> String {
+    let words = string.components(separatedBy: " ")
+    var headline = ""
+    for var word in words {
+        let firstCharacter = word.remove(at: word.startIndex)
+        headline += "\(String(firstCharacter).uppercased())\(word) "
+    }
+    headline.remove(at: headline.index(before: headline.endIndex))
+    return headline
+}
+```
+
+- 运行结果
+```
+Test Suite 'All tests' started at 2019-09-16 21:07:29.011
+Test Suite 'FirstDemoTests.xctest' started at 2019-09-16 21:07:29.013
+Test Suite 'FirstDemoTests' started at 2019-09-16 21:07:29.014
+Test Case '-[FirstDemoTests.FirstDemoTests test_MakeHeadline_ReturnsStringWithEachWordStartCapital]' started.
+Test Case '-[FirstDemoTests.FirstDemoTests test_MakeHeadline_ReturnsStringWithEachWordStartCapital]' passed (0.191 seconds).
+Test Case '-[FirstDemoTests.FirstDemoTests test_MakeHeadline_ReturnsStringWithEachWordStartCapital2]' started.
+Test Case '-[FirstDemoTests.FirstDemoTests test_MakeHeadline_ReturnsStringWithEachWordStartCapital2]' passed (0.001 seconds).
+Test Case '-[FirstDemoTests.FirstDemoTests test_NumberOfVowels_WhenPassedDominik_ReturnsThree]' started.
+Test Case '-[FirstDemoTests.FirstDemoTests test_NumberOfVowels_WhenPassedDominik_ReturnsThree]' passed (0.002 seconds).
+Test Case '-[FirstDemoTests.FirstDemoTests testExample]' started.
+Test Case '-[FirstDemoTests.FirstDemoTests testExample]' passed (0.001 seconds).
+Test Case '-[FirstDemoTests.FirstDemoTests testPerformanceExample]' started.
+/.../FirstDemo/FirstDemoTests/FirstDemoTests.swift:52: Test Case '-
+[FirstDemoTests.FirstDemoTests testPerformanceExample]' measured [Time, seconds] average: 0.000, 
+relative standard deviation: 73.646%, 
+values: [0.000004, 0.000003, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001], 
+performanceMetricID:com.apple.XCTPerformanceMetric_WallClockTime, 
+baselineName: "Local Baseline", 
+baselineAverage: 0.000, 
+maxPercentRegression: 10.000%, 
+maxPercentRelativeStandardDeviation: 10.000%, 
+maxRegression: 0.100, 
+maxStandardDeviation: 0.100
+Test Case '-[FirstDemoTests.FirstDemoTests testPerformanceExample]' passed (0.509 seconds).
+Test Suite 'FirstDemoTests' passed at 2019-09-16 21:07:29.722.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.703 (0.708) seconds
+Test Suite 'FirstDemoTests.xctest' passed at 2019-09-16 21:07:29.723.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.703 (0.710) seconds
+Test Suite 'All tests' passed at 2019-09-16 21:07:29.724.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.703 (0.713) seconds
+```
+
+
+- TODO
+```swift
+
+
+```
 
 
 
 - TODO
 ```
-//    func numberOfVowels(in string: String) -> Int {
-//        let vowels: [Character] = ["a", "e", "i", "o", "u",
-//                                   "A", "E", "I", "O", "U"]
-//
-//        return string.characters.reduce(0) {
-//            $0 + (vowels.contains($1) ? 1 : 0)
-//        }
-//    }
-    
-    func makeHeadline(from string: String) -> String {
-        let words = string.components(separatedBy: " ")
-        
-        
-        let headlineWords = words.map { (word) -> String in
-            var mutableWord = word
-            let first = mutableWord.remove(at: mutableWord.startIndex)
-            
-            return String(first).uppercased() + mutableWord
-        }
-        
-        return headlineWords.joined(separator: " ")
-    }
+
 ```
 
 
