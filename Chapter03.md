@@ -131,7 +131,7 @@ Test Suite 'All tests' passed at 2019-09-16 23:08:14.839.
 	 Executed 2 tests, with 0 failures (0 unexpected) in 0.032 (0.041) seconds
 ```
 
-## Adding an timestamp property
+## Adding a timestamp property
 
 - ToDoItem.swift
 ```swift
@@ -177,6 +177,43 @@ Test Suite 'ToDoTests.xctest' passed at 2019-09-16 23:12:52.392.
 	 Executed 3 tests, with 0 failures (0 unexpected) in 0.042 (0.049) seconds
 Test Suite 'All tests' passed at 2019-09-16 23:12:52.393.
 	 Executed 3 tests, with 0 failures (0 unexpected) in 0.042 (0.052) seconds
+```
+
+## Adding a location property
+
+- Location.swift
+```swift
+struct Location {
+    let name: String
+}
+```
+
+- ToDoItemTests.swift
+```swift
+func test_Init_WhenGivenLocation_SetsLocation() {
+    let location = Location(name: "Foo")
+}
+```
+
+- 控制台
+```swift
+Test Suite 'All tests' started at 2019-09-16 23:16:04.745
+Test Suite 'ToDoTests.xctest' started at 2019-09-16 23:16:04.747
+Test Suite 'ToDoItemTests' started at 2019-09-16 23:16:04.747
+Test Case '-[ToDoTests.ToDoItemTests test_Init_SetsTimestamp]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_SetsTimestamp]' passed (0.032 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenDescription_SetsDescription]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenDescription_SetsDescription]' passed (0.002 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenLocation_SetsLocation]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenLocation_SetsLocation]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenTitle_SetsTitle]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenTitle_SetsTitle]' passed (0.001 seconds).
+Test Suite 'ToDoItemTests' passed at 2019-09-16 23:16:04.788.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.036 (0.041) seconds
+Test Suite 'ToDoTests.xctest' passed at 2019-09-16 23:16:04.789.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.036 (0.042) seconds
+Test Suite 'All tests' passed at 2019-09-16 23:16:04.791.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.036 (0.046) seconds
 ```
 
 

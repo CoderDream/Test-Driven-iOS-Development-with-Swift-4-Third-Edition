@@ -38,4 +38,8 @@ class ToDoItemTests: XCTestCase {
         XCTAssertEqual(item.timestamp, 0.0,
                        "should set timestamp")
     }
+    
+    func test_Init_WhenGivenLocation_SetsLocation() {
+        let location = Location(name: "Foo")
+    }
 }
