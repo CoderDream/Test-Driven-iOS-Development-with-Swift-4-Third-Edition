@@ -131,6 +131,54 @@ Test Suite 'All tests' passed at 2019-09-16 23:08:14.839.
 	 Executed 2 tests, with 0 failures (0 unexpected) in 0.032 (0.041) seconds
 ```
 
+## Adding an timestamp property
+
+- ToDoItem.swift
+```swift
+struct ToDoItem {
+    let title: String
+    let itemDescription: String?
+    let timestamp: Double?
+    
+    init(title: String,
+         itemDescription: String? = nil,
+         timestamp: Double? = nil) {
+        self.title = title
+        self.itemDescription = itemDescription
+        self.timestamp = timestamp
+    }
+}
+```
+
+- ToDoItemTests.swift
+```swift
+func test_Init_SetsTimestamp() {
+    let item = ToDoItem(title: "",
+                        timestamp: 0.0)
+    XCTAssertEqual(item.timestamp, 0.0,
+                   "should set timestamp")
+}
+```
+
+- 控制台
+```swift
+Test Suite 'All tests' started at 2019-09-16 23:12:52.341
+Test Suite 'ToDoTests.xctest' started at 2019-09-16 23:12:52.343
+Test Suite 'ToDoItemTests' started at 2019-09-16 23:12:52.344
+Test Case '-[ToDoTests.ToDoItemTests test_Init_SetsTimestamp]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_SetsTimestamp]' passed (0.039 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenDescription_SetsDescription]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenDescription_SetsDescription]' passed (0.002 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenTitle_SetsTitle]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenTitle_SetsTitle]' passed (0.001 seconds).
+Test Suite 'ToDoItemTests' passed at 2019-09-16 23:12:52.391.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.042 (0.047) seconds
+Test Suite 'ToDoTests.xctest' passed at 2019-09-16 23:12:52.392.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.042 (0.049) seconds
+Test Suite 'All tests' passed at 2019-09-16 23:12:52.393.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.042 (0.052) seconds
+```
+
 
 - TODO
 ```swift
