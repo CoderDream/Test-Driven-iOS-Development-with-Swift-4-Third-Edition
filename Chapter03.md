@@ -216,6 +216,62 @@ Test Suite 'All tests' passed at 2019-09-16 23:16:04.791.
 	 Executed 4 tests, with 0 failures (0 unexpected) in 0.036 (0.046) seconds
 ```
 
+## Rewrite test 
+
+- ToDoItem.swift
+```swift
+struct ToDoItem {
+    let title: String
+    let itemDescription: String?
+    let timestamp: Double?
+    let location: Location?
+    
+    init(title: String,
+         itemDescription: String? = nil,
+         timestamp: Double? = nil,
+         location: Location? = nil) {
+        self.title = title
+        self.itemDescription = itemDescription
+        self.timestamp = timestamp
+        self.location = location
+    }
+}
+```
+
+- ToDoItemTests.swift
+```swift
+func test_Init_SetsLocation() {
+    let location = Location(name: "Foo")
+    let item = ToDoItem(title: "",
+                        location: location)
+    XCTAssertEqual(item.location?.name,
+                   location.name,
+                   "should set location")
+}
+```
+
+- 控制台
+```swift
+Test Suite 'All tests' started at 2019-09-16 23:21:16.034
+Test Suite 'ToDoTests.xctest' started at 2019-09-16 23:21:16.036
+Test Suite 'ToDoItemTests' started at 2019-09-16 23:21:16.036
+Test Case '-[ToDoTests.ToDoItemTests test_Init_SetsLocation]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_SetsLocation]' passed (0.080 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Init_SetsTimestamp]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_SetsTimestamp]' passed (0.002 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenDescription_SetsDescription]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenDescription_SetsDescription]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenTitle_SetsTitle]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenTitle_SetsTitle]' passed (0.001 seconds).
+Test Suite 'ToDoItemTests' passed at 2019-09-16 23:21:16.125.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.084 (0.089) seconds
+Test Suite 'ToDoTests.xctest' passed at 2019-09-16 23:21:16.127.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.084 (0.091) seconds
+Test Suite 'All tests' passed at 2019-09-16 23:21:16.128.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.084 (0.094) seconds
+```
+
+
 
 - TODO
 ```swift
