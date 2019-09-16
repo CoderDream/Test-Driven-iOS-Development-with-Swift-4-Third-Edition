@@ -55,22 +55,45 @@ Test Suite 'All tests' passed at 2019-09-16 22:57:35.911.
 	 Executed 1 test, with 0 failures (0 unexpected) in 0.060 (0.067) seconds
 ```
 
+## Adding an itemDescription property
 
-- TODO
+- ToDoItem.swift
 ```swift
-
+struct ToDoItem {
+    let title: String
+    let itemDescription: String?
+    
+    init(title: String,
+         itemDescription: String? = nil) {
+        self.title = title
+        self.itemDescription = itemDescription
+    }
+}
 ```
 
-
-- TODO
+- ToDoItemTests.swift
 ```swift
-
+func test_Init_TakesTitleAndDescription() {
+    _ = ToDoItem(title: "Foo",
+                 itemDescription: "Bar")
+}
 ```
 
-
-- TODO
+- 控制台
 ```swift
-
+Test Suite 'All tests' started at 2019-09-16 23:01:27.210
+Test Suite 'ToDoTests.xctest' started at 2019-09-16 23:01:27.212
+Test Suite 'ToDoItemTests' started at 2019-09-16 23:01:27.213
+Test Case '-[ToDoTests.ToDoItemTests test_Init_TakesTitle]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_TakesTitle]' passed (0.049 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Init_TakesTitleAndDescription]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_TakesTitleAndDescription]' passed (0.001 seconds).
+Test Suite 'ToDoItemTests' passed at 2019-09-16 23:01:27.266.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.051 (0.053) seconds
+Test Suite 'ToDoTests.xctest' passed at 2019-09-16 23:01:27.268.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.051 (0.056) seconds
+Test Suite 'All tests' passed at 2019-09-16 23:01:27.270.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.051 (0.060) seconds
 ```
 
 
