@@ -79,7 +79,9 @@ Test Case '-[FirstDemoTests.FirstDemoTests test_NumberOfVowels_WhenPassedDominik
 Test Case '-[FirstDemoTests.FirstDemoTests testExample]' started.
 Test Case '-[FirstDemoTests.FirstDemoTests testExample]' passed (0.001 seconds).
 Test Case '-[FirstDemoTests.FirstDemoTests testPerformanceExample]' started.
-/.../FirstDemo/FirstDemoTests/FirstDemoTests.swift:37: Test Case '-[FirstDemoTests.FirstDemoTests testPerformanceExample]' measured [Time, seconds] average: 0.000, relative standard deviation: 73.582%, 
+/.../FirstDemo/FirstDemoTests/FirstDemoTests.swift:37: 
+Test Case '-[FirstDemoTests.FirstDemoTests testPerformanceExample]' measured [Time, seconds] average: 0.000, 
+relative standard deviation: 73.582%, 
 values: [0.000005, 0.000003, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001], 
 performanceMetricID:com.apple.XCTPerformanceMetric_WallClockTime, 
 baselineName: "", baselineAverage: , 
@@ -112,15 +114,18 @@ Test Suite 'All tests' started at 2019-09-15 19:44:47.130
 Test Suite 'FirstDemoTests.xctest' started at 2019-09-15 19:44:47.138
 Test Suite 'FirstDemoTests' started at 2019-09-15 19:44:47.139
 Test Case '-[FirstDemoTests.FirstDemoTests test_NumberOfVowels_WhenPassedDominik_ReturnsThree]' started.
-/.../FirstDemo/FirstDemoTests/FirstDemoTests.swift:31: error: -[FirstDemoTests.FirstDemoTests test_NumberOfVowels_WhenPassedDominik_ReturnsThree] : 
+/.../FirstDemo/FirstDemoTests/FirstDemoTests.swift:31: 
+error: -[FirstDemoTests.FirstDemoTests test_NumberOfVowels_WhenPassedDominik_ReturnsThree] : 
 XCTAssertEqual failed: ("3") is not equal to ("4") - should find 4 vowels in Dominik
 Test Case '-[FirstDemoTests.FirstDemoTests test_NumberOfVowels_WhenPassedDominik_ReturnsThree]' failed (0.106 seconds).
 Test Case '-[FirstDemoTests.FirstDemoTests testExample]' started.
 Test Case '-[FirstDemoTests.FirstDemoTests testExample]' passed (0.002 seconds).
 Test Case '-[FirstDemoTests.FirstDemoTests testPerformanceExample]' started.
-/.../FirstDemo/FirstDemoTests/FirstDemoTests.swift:37: Test Case '-[FirstDemoTests.FirstDemoTests testPerformanceExample]' measured [Time, seconds] average: 0.000, 
+/.../FirstDemo/FirstDemoTests/FirstDemoTests.swift:37: 
+Test Case '-[FirstDemoTests.FirstDemoTests testPerformanceExample]' measured [Time, seconds] average: 0.000, 
 relative standard deviation: 75.297%, 
-values: [0.000004, 0.000002, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001], performanceMetricID:com.apple.XCTPerformanceMetric_WallClockTime, 
+values: [0.000004, 0.000002, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001], 
+performanceMetricID:com.apple.XCTPerformanceMetric_WallClockTime, 
 baselineName: "", 
 baselineAverage: , 
 maxPercentRegression: 10.000%, 
@@ -298,24 +303,71 @@ Test Suite 'All tests' passed at 2019-09-16 21:07:29.724.
 ```
 
 
-- TODO
+## Refactor - example 2
+
+- FirstDemoTests
+```
+func test_MakeHeadline_ReturnsStringWithEachWordStartCapital() {
+    let input = "this is A test headline"
+    let expectedOutput = "This Is A Test Headline"
+    let headline = viewController.makeHeadline(from: input)
+    XCTAssertEqual(headline, expectedOutput)
+}
+    
+func test_MakeHeadline_ReturnsStringWithEachWordStartCapital2() {
+    let input = "Here is another Example"
+    let expectedOutput = "Here Is Another Example"
+    let headline = viewController.makeHeadline(from: input)
+    XCTAssertEqual(headline, expectedOutput)
+}
+```
+
+
+- ViewController
+```
+func makeHeadline(from string: String) -> String {
+    let words = string.components(separatedBy: " ")
+    let headlineWords = words.map { (word) -> String in
+        var mutableWord = word
+        let first = mutableWord.remove(at: mutableWord.startIndex)
+        return String(first).uppercased() + mutableWord
+    }
+    return headlineWords.joined(separator: " ")
+}
+```
+
+- 控制台输出
 ```swift
-
-
-```
-
-
-
-- TODO
-```
-
-```
-
-
-- TODO
-```swift
-
-
+Test Suite 'All tests' started at 2019-09-16 21:57:14.418
+Test Suite 'FirstDemoTests.xctest' started at 2019-09-16 21:57:14.420
+Test Suite 'FirstDemoTests' started at 2019-09-16 21:57:14.421
+Test Case '-[FirstDemoTests.FirstDemoTests test_MakeHeadline_ReturnsStringWithEachWordStartCapital]' started.
+Test Case '-[FirstDemoTests.FirstDemoTests test_MakeHeadline_ReturnsStringWithEachWordStartCapital]' passed (0.070 seconds).
+Test Case '-[FirstDemoTests.FirstDemoTests test_MakeHeadline_ReturnsStringWithEachWordStartCapital2]' started.
+Test Case '-[FirstDemoTests.FirstDemoTests test_MakeHeadline_ReturnsStringWithEachWordStartCapital2]' passed (0.002 seconds).
+Test Case '-[FirstDemoTests.FirstDemoTests test_NumberOfVowels_WhenPassedDominik_ReturnsThree]' started.
+Test Case '-[FirstDemoTests.FirstDemoTests test_NumberOfVowels_WhenPassedDominik_ReturnsThree]' passed (0.005 seconds).
+Test Case '-[FirstDemoTests.FirstDemoTests testExample]' started.
+Test Case '-[FirstDemoTests.FirstDemoTests testExample]' passed (0.001 seconds).
+Test Case '-[FirstDemoTests.FirstDemoTests testPerformanceExample]' started.
+/.../FirstDemo/FirstDemoTests/FirstDemoTests.swift:54: Test Case '-[FirstDemoTests.FirstDemoTests testPerformanceExample]' 
+measured [Time, seconds] average: 0.000, 
+relative standard deviation: 77.080%, 
+values: [0.000004, 0.000003, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001, 0.000001], 
+performanceMetricID:com.apple.XCTPerformanceMetric_WallClockTime, 
+baselineName: "Local Baseline", 
+baselineAverage: 0.000, 
+maxPercentRegression: 10.000%, 
+maxPercentRelativeStandardDeviation: 10.000%, 
+maxRegression: 0.100, 
+maxStandardDeviation: 0.100
+Test Case '-[FirstDemoTests.FirstDemoTests testPerformanceExample]' passed (0.410 seconds).
+Test Suite 'FirstDemoTests' passed at 2019-09-16 21:57:14.914.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.487 (0.493) seconds
+Test Suite 'FirstDemoTests.xctest' passed at 2019-09-16 21:57:14.915.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.487 (0.495) seconds
+Test Suite 'All tests' passed at 2019-09-16 21:57:14.916.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.487 (0.498) seconds
 ```
 
 

@@ -36,15 +36,17 @@ class FirstDemoTests: XCTestCase {
     }
     
     func test_MakeHeadline_ReturnsStringWithEachWordStartCapital() {
-        let string = "this is A test headline"
-        let headline = viewController.makeHeadline(from: string)
-        XCTAssertEqual(headline, "This Is A Test Headline")
+        let input = "this is A test headline"
+        let expectedOutput = "This Is A Test Headline"
+        let headline = viewController.makeHeadline(from: input)
+        XCTAssertEqual(headline, expectedOutput)
     }
     
     func test_MakeHeadline_ReturnsStringWithEachWordStartCapital2() {
-        let string = "Here is another Example"
-        let headline = viewController.makeHeadline(from: string)
-        XCTAssertEqual(headline, "Here Is Another Example")
+        let input = "Here is another Example"
+        let expectedOutput = "Here Is Another Example"
+        let headline = viewController.makeHeadline(from: input)
+        XCTAssertEqual(headline, expectedOutput)
     }
 
     func testPerformanceExample() {
