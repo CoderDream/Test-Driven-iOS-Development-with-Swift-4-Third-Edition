@@ -31,16 +31,28 @@ Test Suite 'All tests' passed at 2019-09-16 22:51:16.746.
 	 Executed 1 test, with 0 failures (0 unexpected) in 0.057 (0.064) seconds
 ```
 
-
-- TODO
+## Rewrite the test method
+- ToDoItemTests.swift
 ```swift
-
+func test_Init_TakesTitle() {
+    let item = ToDoItem(title: "Foo")
+    XCTAssertNotNil(item, "item should not be nil")
+}
 ```
 
-
-- TODO
+- 控制台
 ```swift
-
+Test Suite 'All tests' started at 2019-09-16 22:57:35.844
+Test Suite 'ToDoTests.xctest' started at 2019-09-16 22:57:35.846
+Test Suite 'ToDoItemTests' started at 2019-09-16 22:57:35.846
+Test Case '-[ToDoTests.ToDoItemTests test_Init_TakesTitle]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_TakesTitle]' passed (0.060 seconds).
+Test Suite 'ToDoItemTests' passed at 2019-09-16 22:57:35.908.
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.060 (0.062) seconds
+Test Suite 'ToDoTests.xctest' passed at 2019-09-16 22:57:35.910.
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.060 (0.064) seconds
+Test Suite 'All tests' passed at 2019-09-16 22:57:35.911.
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.060 (0.067) seconds
 ```
 
 
