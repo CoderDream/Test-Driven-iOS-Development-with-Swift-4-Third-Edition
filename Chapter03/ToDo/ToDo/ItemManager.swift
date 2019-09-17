@@ -19,7 +19,10 @@ class ItemManager {
     // 新增todo项目
     func add(_ item: ToDoItem) {
         //toDoCount += 1
-        toDoItems.append(item)
+        //toDoItems.append(item)
+        if !toDoItems.contains(item) {
+            toDoItems.append(item)
+        }
     }
     
     // 根据序号查找待办项目
@@ -45,4 +48,5 @@ class ItemManager {
         toDoItems.removeAll()
         doneItems.removeAll()
     }
+    
 }
