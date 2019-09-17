@@ -40,4 +40,9 @@ class ItemManager {
         //return ToDoItem(title: "")
         return doneItems[index]
     }
+    
+    func removeAll() {
+        toDoItems.removeAll()
+        doneItems.removeAll()
+    }
 }

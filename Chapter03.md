@@ -898,7 +898,97 @@ Test Suite 'All tests' passed at 2019-09-17 17:02:23.157.
 	 Executed 23 tests, with 0 failures (0 unexpected) in 0.190 (0.224) seconds
 ```
 
+### Removing all items
 
+- ItemManager.swift
+```swift
+func removeAll() {
+    toDoItems.removeAll()
+    doneItems.removeAll()
+}
+```
+
+- ItemManagerTests.swift
+```swift
+func test_RemoveAll_ResultsInCountsBeZero() {
+    sut.add(ToDoItem(title: "Foo"))
+    sut.add(ToDoItem(title: "Bar"))
+    sut.checkItem(at: 0)
+    XCTAssertEqual(sut.toDoCount, 1)
+    XCTAssertEqual(sut.doneCount, 1)
+    sut.removeAll()
+    
+    XCTAssertEqual(sut.toDoCount, 0)
+    XCTAssertEqual(sut.doneCount, 0)
+}
+```
+
+- 控制台
+```swift
+Test Suite 'All tests' started at 2019-09-17 17:27:53.724
+Test Suite 'ToDoTests.xctest' started at 2019-09-17 17:27:53.727
+Test Suite 'ItemManagerTests' started at 2019-09-17 17:27:53.728
+Test Case '-[ToDoTests.ItemManagerTests test_AddItem_IncreasesToDoCountToOne]' started.
+Test Case '-[ToDoTests.ItemManagerTests test_AddItem_IncreasesToDoCountToOne]' passed (0.040 seconds).
+Test Case '-[ToDoTests.ItemManagerTests test_CheckItemAt_ChangesCounts]' started.
+Test Case '-[ToDoTests.ItemManagerTests test_CheckItemAt_ChangesCounts]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ItemManagerTests test_CheckItemAt_RemovesItFromToDoItems]' started.
+Test Case '-[ToDoTests.ItemManagerTests test_CheckItemAt_RemovesItFromToDoItems]' passed (0.004 seconds).
+Test Case '-[ToDoTests.ItemManagerTests test_DoneCount_Initially_IsZero]' started.
+Test Case '-[ToDoTests.ItemManagerTests test_DoneCount_Initially_IsZero]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ItemManagerTests test_DoneItemAt_ReturnsCheckedItem]' started.
+Test Case '-[ToDoTests.ItemManagerTests test_DoneItemAt_ReturnsCheckedItem]' passed (0.003 seconds).
+Test Case '-[ToDoTests.ItemManagerTests test_ItemAt_ReturnsAddedItem]' started.
+Test Case '-[ToDoTests.ItemManagerTests test_ItemAt_ReturnsAddedItem]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ItemManagerTests test_RemoveAll_ResultsInCountsBeZero]' started.
+Test Case '-[ToDoTests.ItemManagerTests test_RemoveAll_ResultsInCountsBeZero]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ItemManagerTests test_ToDoCount_Initially_IsZero]' started.
+Test Case '-[ToDoTests.ItemManagerTests test_ToDoCount_Initially_IsZero]' passed (0.001 seconds).
+Test Suite 'ItemManagerTests' passed at 2019-09-17 17:27:53.787.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.052 (0.059) seconds
+Test Suite 'LocationTests' started at 2019-09-17 17:27:53.788
+Test Case '-[ToDoTests.LocationTests test_EqualLocations_AreEqual]' started.
+Test Case '-[ToDoTests.LocationTests test_EqualLocations_AreEqual]' passed (0.001 seconds).
+Test Case '-[ToDoTests.LocationTests test_Init_SetsCoordinate]' started.
+Test Case '-[ToDoTests.LocationTests test_Init_SetsCoordinate]' passed (0.003 seconds).
+Test Case '-[ToDoTests.LocationTests test_Init_SetsName]' started.
+Test Case '-[ToDoTests.LocationTests test_Init_SetsName]' passed (0.001 seconds).
+Test Case '-[ToDoTests.LocationTests test_Locations_WhenLatitudeDiffers_AreNotEqual]' started.
+Test Case '-[ToDoTests.LocationTests test_Locations_WhenLatitudeDiffers_AreNotEqual]' passed (0.001 seconds).
+Test Case '-[ToDoTests.LocationTests test_Locations_WhenLongitudeDiffers_AreNotEqual]' started.
+Test Case '-[ToDoTests.LocationTests test_Locations_WhenLongitudeDiffers_AreNotEqual]' passed (0.001 seconds).
+Test Case '-[ToDoTests.LocationTests test_Locations_WhenNamesDiffer_AreNotEqual]' started.
+Test Case '-[ToDoTests.LocationTests test_Locations_WhenNamesDiffer_AreNotEqual]' passed (0.001 seconds).
+Test Case '-[ToDoTests.LocationTests test_Locations_WhenOnlyOneHasCoordinate_AreNotEqual]' started.
+Test Case '-[ToDoTests.LocationTests test_Locations_WhenOnlyOneHasCoordinate_AreNotEqual]' passed (0.001 seconds).
+Test Suite 'LocationTests' passed at 2019-09-17 17:27:53.803.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.009 (0.015) seconds
+Test Suite 'ToDoItemTests' started at 2019-09-17 17:27:53.804
+Test Case '-[ToDoTests.ToDoItemTests test_Init_SetsLocation]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_SetsLocation]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Init_SetsTimestamp]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_SetsTimestamp]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenDescription_SetsDescription]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenDescription_SetsDescription]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenTitle_SetsTitle]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenTitle_SetsTitle]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Items_WhenDescriptionsDiffer_AreNotEqual]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Items_WhenDescriptionsDiffer_AreNotEqual]' passed (0.002 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Items_WhenLocationDiffers_AreNotEqual]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Items_WhenLocationDiffers_AreNotEqual]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Items_WhenOneLocationIsNil_AreNotEqual]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Items_WhenOneLocationIsNil_AreNotEqual]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Items_WhenTimestampsDiffer_AreNotEqual]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Items_WhenTimestampsDiffer_AreNotEqual]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Items_WhenTitlesDiffer_AreNotEqual]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Items_WhenTitlesDiffer_AreNotEqual]' passed (0.001 seconds).
+Test Suite 'ToDoItemTests' passed at 2019-09-17 17:27:53.824.
+	 Executed 9 tests, with 0 failures (0 unexpected) in 0.010 (0.019) seconds
+Test Suite 'ToDoTests.xctest' passed at 2019-09-17 17:27:53.825.
+	 Executed 24 tests, with 0 failures (0 unexpected) in 0.071 (0.098) seconds
+Test Suite 'All tests' passed at 2019-09-17 17:27:53.826.
+	 Executed 24 tests, with 0 failures (0 unexpected) in 0.071 (0.102) seconds
+```
 
 - TODO
 ```swift

@@ -46,6 +46,5 @@ struct ToDoItem: Equatable {
         }
         
         return true
-    }
-    
+    }    
 }
