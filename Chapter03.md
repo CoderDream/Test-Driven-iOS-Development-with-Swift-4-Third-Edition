@@ -346,6 +346,84 @@ Test Suite 'All tests' passed at 2019-09-17 15:04:59.893.
 	 Executed 5 tests, with 0 failures (0 unexpected) in 0.167 (0.181) seconds
 ```
 
+
+## Implementing the ItemManager class
+
+### Count
+
+- ItemManager.swift
+```swift
+class ItemManager {
+    let toDoCount = 0
+    let doneCount = 0
+}
+```
+
+- ItemManagerTests.swift
+```swift
+import XCTest
+@testable import ToDo
+
+class ItemManagerTests: XCTestCase {
+    
+    var sut: ItemManager!
+
+    override func setUp() {
+        sut = ItemManager()
+    }
+
+    override func tearDown() {
+        // Put teardown code here.
+    }
+
+    func test_ToDoCount_Initially_IsZero() {
+        XCTAssertEqual(sut.toDoCount, 0)
+    }
+
+    func test_DoneCount_Initially_IsZero() {
+        XCTAssertEqual(sut.doneCount, 0)
+    }
+    
+}
+```
+
+- 控制台
+```swift
+Test Suite 'All tests' started at 2019-09-17 15:30:14.850
+Test Suite 'ToDoTests.xctest' started at 2019-09-17 15:30:14.853
+Test Suite 'ItemManagerTests' started at 2019-09-17 15:30:14.854
+Test Case '-[ToDoTests.ItemManagerTests test_DoneCount_Initially_IsZero]' started.
+Test Case '-[ToDoTests.ItemManagerTests test_DoneCount_Initially_IsZero]' passed (0.048 seconds).
+Test Case '-[ToDoTests.ItemManagerTests test_ToDoCount_Initially_IsZero]' started.
+Test Case '-[ToDoTests.ItemManagerTests test_ToDoCount_Initially_IsZero]' passed (0.001 seconds).
+Test Suite 'ItemManagerTests' passed at 2019-09-17 15:30:14.906.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.050 (0.052) seconds
+Test Suite 'LocationTests' started at 2019-09-17 15:30:14.907
+Test Case '-[ToDoTests.LocationTests test_Init_SetsCoordinate]' started.
+Test Case '-[ToDoTests.LocationTests test_Init_SetsCoordinate]' passed (0.005 seconds).
+Test Case '-[ToDoTests.LocationTests test_Init_SetsName]' started.
+Test Case '-[ToDoTests.LocationTests test_Init_SetsName]' passed (0.003 seconds).
+Test Suite 'LocationTests' passed at 2019-09-17 15:30:14.919.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.008 (0.011) seconds
+Test Suite 'ToDoItemTests' started at 2019-09-17 15:30:14.920
+Test Case '-[ToDoTests.ToDoItemTests test_Init_SetsLocation]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_SetsLocation]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Init_SetsTimestamp]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_SetsTimestamp]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenDescription_SetsDescription]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenDescription_SetsDescription]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenTitle_SetsTitle]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenTitle_SetsTitle]' passed (0.001 seconds).
+Test Suite 'ToDoItemTests' passed at 2019-09-17 15:30:14.929.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.004 (0.009) seconds
+Test Suite 'ToDoTests.xctest' passed at 2019-09-17 15:30:14.930.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.062 (0.077) seconds
+Test Suite 'All tests' passed at 2019-09-17 15:30:14.931.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.062 (0.081) seconds
+```
+
+
+
 - TODO
 ```swift
 
