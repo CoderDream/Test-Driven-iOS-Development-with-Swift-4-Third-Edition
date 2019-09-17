@@ -422,6 +422,482 @@ Test Suite 'All tests' passed at 2019-09-17 15:30:14.931.
 	 Executed 8 tests, with 0 failures (0 unexpected) in 0.062 (0.081) seconds
 ```
 
+### Adding and checking items 添加和判断项目是否相等
+
+- ToDoItem.swift
+```swift
+struct ToDoItem: Equatable {
+    let title: String
+    let itemDescription: String?
+    let timestamp: Double?
+    let location: Location?
+    
+    init(title: String,
+         itemDescription: String? = nil,
+         timestamp: Double? = nil,
+         location: Location? = nil) {
+        self.title = title
+        self.itemDescription = itemDescription
+        self.timestamp = timestamp
+        self.location = location
+    }
+    
+    // 实现Equatable协议中的方法
+    public static func ==(lhs: ToDoItem, rhs: ToDoItem) -> Bool {
+//        if lhs.location?.name != rhs.location?.name {
+//            return false
+//        }
+        if lhs.location != rhs.location {
+            return false
+        }
+        
+        if lhs.timestamp != rhs.timestamp {
+            return false
+        }
+        
+        if lhs.itemDescription != rhs.itemDescription {
+            return false
+        }
+        
+        if lhs.title != rhs.title {
+            return false
+        }
+        
+        return true
+    }
+    
+}
+```
+
+- Location.swift
+```swift
+struct Location: Equatable {
+    let name: String
+    let coordinate: CLLocationCoordinate2D?
+    init(name: String,
+         coordinate: CLLocationCoordinate2D? = nil) {
+        self.name = name
+        self.coordinate = coordinate
+    }
+    
+    public static func ==(lhs: Location,
+                          rhs: Location) -> Bool {
+        if lhs.coordinate?.latitude !=
+            rhs.coordinate?.latitude {
+            return false
+        }
+        
+        if lhs.coordinate?.longitude !=
+            rhs.coordinate?.longitude {
+            return false
+        }
+        
+        if lhs.name != rhs.name {
+            return false
+        }
+        
+        return true
+    }
+}
+```
+
+- ItemManager.swift
+```swift
+class ItemManager {
+//    var toDoCount = 0
+//    var doneCount = 0
+    var toDoCount: Int { return toDoItems.count }
+    var doneCount: Int { return doneItems.count }
+    private var toDoItems: [ToDoItem] = []
+    private var doneItems: [ToDoItem] = []
+    
+    // 新增todo项目
+    func add(_ item: ToDoItem) {
+        //toDoCount += 1
+        toDoItems.append(item)
+    }
+    
+    // 根据序号查找待办项目
+    func item(at index: Int) -> ToDoItem {
+        return toDoItems[index]
+    }
+    
+    // 完成项目
+    func checkItem(at index: Int) {
+        //toDoCount -= 1
+        //doneCount += 1
+        // _ = toDoItems.remove(at: index)
+        let item = toDoItems.remove(at: index)
+        doneItems.append(item)
+    }
+    
+    func doneItem(at index: Int) -> ToDoItem {
+        //return ToDoItem(title: "")
+        return doneItems[index]
+    }
+}
+```
+
+- ToDoItemTests.swift
+```swift
+class ToDoItemTests: XCTestCase {
+
+    override func setUp() {
+        // Put setup code here. 
+    }
+
+    override func tearDown() {
+        // Put teardown code here.
+    }
+    
+    // 通过标题初始化对象
+    func test_Init_WhenGivenTitle_SetsTitle() {
+        let item = ToDoItem(title: "Foo")
+        XCTAssertEqual(item.title, "Foo",
+                       "should set title")
+    }
+
+    // 通过标题和描述初始化对象
+    func test_Init_WhenGivenDescription_SetsDescription() {
+        let item = ToDoItem(title: "",
+                            itemDescription: "Bar")
+        XCTAssertEqual(item.itemDescription, "Bar",
+                       "should set itemDescription")
+    }
+    
+    // 通过标题和时间戳初始化对象
+    func test_Init_SetsTimestamp() {
+        let item = ToDoItem(title: "",
+                            timestamp: 0.0)
+        XCTAssertEqual(item.timestamp, 0.0,
+                       "should set timestamp")
+    }
+    
+    // 初始化对象，并设置对象的属性对象
+    func test_Init_SetsLocation() {
+        let location = Location(name: "Foo")
+        let item = ToDoItem(title: "",
+                            location: location)
+        XCTAssertEqual(item.location?.name,
+                       location.name,
+                       "should set location")
+    }
+    
+    // 名称相等时对象相等
+    func text_EqualItems_AreEqual() {
+        let first = ToDoItem(title: "Foo")
+        let second = ToDoItem(title: "Foo")
+        XCTAssertEqual(first, second)
+    }
+    
+    // 地址的名称不相等时对象不相等
+    func test_Items_WhenLocationDiffers_AreNotEqual() {
+        let first = ToDoItem(title: "",
+                             location: Location(name: "Foo"))
+        let second = ToDoItem(title: "",
+                              location: Location(name: "Bar"))
+        XCTAssertNotEqual(first, second)
+    }
+    
+    // 地址的名称不相等时对象不相等（和nil比较）
+    func test_Items_WhenOneLocationIsNil_AreNotEqual() {
+        var first = ToDoItem(title: "",
+                             location: Location(name: "Foo"))
+        var second = ToDoItem(title: "",
+                              location: nil)
+        XCTAssertNotEqual(first, second)
+        
+        first = ToDoItem(title: "",
+                         location: nil)
+        second = ToDoItem(title: "",
+                          location: Location(name: "Foo"))
+        XCTAssertNotEqual(first, second)
+    }
+    
+    // 时间戳不相等时对象不相等
+    func test_Items_WhenTimestampsDiffer_AreNotEqual() {
+        let first = ToDoItem(title: "Foo",
+                             timestamp: 1.0)
+        let second = ToDoItem(title: "Foo",
+                              timestamp: 0.0)
+        XCTAssertNotEqual(first, second)
+    }
+    
+    // 描述不相等时对象不相等
+    func test_Items_WhenDescriptionsDiffer_AreNotEqual() {
+        let first = ToDoItem(title: "Foo",
+                             itemDescription: "Bar")
+        let second = ToDoItem(title: "Foo",
+                              itemDescription: "Baz")
+        XCTAssertNotEqual(first, second)
+    }
+    
+    // 名称不相等时对象不相等
+    func test_Items_WhenTitlesDiffer_AreNotEqual() {
+        let first = ToDoItem(title: "Foo")
+        let second = ToDoItem(title: "Bar")
+        XCTAssertNotEqual(first, second)
+    }
+}
+```
+
+- LocationTests.swift
+```swift
+class LocationTests: XCTestCase {
+
+    override func setUp() {
+        // Put setup code here.
+    }
+
+    override func tearDown() {
+        // Put teardown code here. T
+    }
+
+    // 通过名称和经纬度初始化位置对象
+    func test_Init_SetsCoordinate() {
+        let coordinate =
+            CLLocationCoordinate2D(latitude: 1,
+                                   longitude: 2)
+        let location = Location(name: "",
+                                coordinate: coordinate)
+        XCTAssertEqual(location.coordinate?.latitude,
+                       coordinate.latitude)
+        XCTAssertEqual(location.coordinate?.longitude,
+                       coordinate.longitude)
+    }
+    // 通过名称初始化位置对象
+    func test_Init_SetsName() {
+        let location = Location(name: "Foo")
+        XCTAssertEqual(location.name, "Foo")
+    }
+
+    // 测试地址是否相等，当名称相同时相等
+    func test_EqualLocations_AreEqual() {
+        let first = Location(name: "Foo")
+        let second = Location(name: "Foo")
+        XCTAssertEqual(first, second)
+    }
+    
+    // 测试地址是否相等，当经度不同时，不相等
+    func test_Locations_WhenLatitudeDiffers_AreNotEqual() {
+        let firstCoordinate =
+            CLLocationCoordinate2D(latitude: 1.0,
+                                   longitude: 0.0)
+        let first = Location(name: "Foo",
+                             coordinate: firstCoordinate)
+        let secondCoordinate =
+            CLLocationCoordinate2D(latitude: 0.0,
+                                   longitude: 0.0)
+        let second = Location(name: "Foo",
+                              coordinate: secondCoordinate)
+        XCTAssertNotEqual(first, second)
+    }
+    
+    // 测试地址是否相等，当经纬度不同时，不相等
+    func test_Locations_WhenLongitudeDiffers_AreNotEqual() {
+//        let firstCoordinate =
+//            CLLocationCoordinate2D(latitude: 0.0,
+//                                   longitude: 1.0)
+//        let first = Location(name: "Foo",
+//                             coordinate: firstCoordinate)
+//        let secondCoordinate =
+//            CLLocationCoordinate2D(latitude: 0.0,
+//                                   longitude: 0.0)
+//        let second = Location(name: "Foo",
+//                              coordinate: secondCoordinate)
+//        XCTAssertNotEqual(first, second)
+        assertLocationNotEqualWith(firstName: "Foo",
+                                   firstLongLat: (1.0, 0.0),
+                                   secondName: "Foo",
+                                   secondLongLat: (0.0, 0.0))
+        
+        assertLocationNotEqualWith(firstName: "Foo",
+                                   firstLongLat: (0.0, 1.0),
+                                   secondName: "Foo",
+                                   secondLongLat: (0.0, 0.0))
+    }
+    
+    // 某个地址只有名称，没有经纬度，两个对象不相等
+    func test_Locations_WhenOnlyOneHasCoordinate_AreNotEqual() {
+        assertLocationNotEqualWith(firstName: "Foo",
+                                   firstLongLat: (0.0, 0.0),
+                                   secondName: "Foo",
+                                   secondLongLat: nil)
+    }
+    
+    // 名称不相等
+    func test_Locations_WhenNamesDiffer_AreNotEqual() {
+        assertLocationNotEqualWith(firstName: "Foo",
+                                   firstLongLat: nil,
+                                   secondName: "Bar",
+                                   secondLongLat: nil)
+    }
+    
+    // 辅助方法，判断名称和经纬度
+    func assertLocationNotEqualWith(firstName: String,
+                                    firstLongLat: (Double, Double)?,
+                                    secondName: String,
+                                    secondLongLat: (Double, Double)?,
+                                    line: UInt = #line) {
+        var firstCoord: CLLocationCoordinate2D? = nil
+        if let firstLongLat = firstLongLat {
+            firstCoord =
+                CLLocationCoordinate2D(latitude: firstLongLat.0,
+                                       longitude: firstLongLat.1)
+        }
+        let firstLocation =
+            Location(name: firstName,
+                     coordinate: firstCoord)
+        var secondCoord: CLLocationCoordinate2D? = nil
+        if let secondLongLat = secondLongLat {
+            secondCoord =
+                CLLocationCoordinate2D(latitude: secondLongLat.0,
+                                       longitude: secondLongLat.1)
+        }
+        let secondLocation =
+            Location(name: secondName,
+                     coordinate: secondCoord)
+        XCTAssertNotEqual(firstLocation, secondLocation)
+    }
+}
+```
+
+- ItemManagerTests.swift
+```swift
+class ItemManagerTests: XCTestCase {
+    
+    var sut: ItemManager!
+
+    override func setUp() {
+        sut = ItemManager()
+    }
+
+    override func tearDown() {
+        // Put teardown code here.
+    }
+
+    // 测试todo的数量
+    func test_ToDoCount_Initially_IsZero() {
+        XCTAssertEqual(sut.toDoCount, 0)
+    }
+
+    // 测试done的数量
+    func test_DoneCount_Initially_IsZero() {
+        XCTAssertEqual(sut.doneCount, 0)
+    }
+    
+    // 增加一个项目
+    func test_AddItem_IncreasesToDoCountToOne() {
+        sut.add(ToDoItem(title: ""))
+        XCTAssertEqual(sut.toDoCount, 1)
+    }
+    
+    // 新增一个项目并查找该项目
+    func test_ItemAt_ReturnsAddedItem() {
+        let item = ToDoItem(title: "Foo")
+        sut.add(item)
+        let returnedItem = sut.item(at: 0)
+        XCTAssertEqual(returnedItem.title, item.title)
+    }
+    
+    // 新增一个项目并完成这个项目
+    func test_CheckItemAt_ChangesCounts() {
+        sut.add(ToDoItem(title: ""))
+        sut.checkItem(at: 0)
+        
+        XCTAssertEqual(sut.toDoCount, 0)
+        XCTAssertEqual(sut.doneCount, 1)
+    }
+    
+    // 新增两个项目，完成第一个项目
+    func test_CheckItemAt_RemovesItFromToDoItems() {
+        let first = ToDoItem(title: "First")
+        let second = ToDoItem(title: "Second")
+        sut.add(first)
+        sut.add(second)
+        sut.checkItem(at: 0)
+        XCTAssertEqual(sut.item(at: 0).title,
+                       "Second")
+    }
+    
+    // 判断两个对象是否相等（实现Equatable协议）
+    func test_DoneItemAt_ReturnsCheckedItem() {
+        let item = ToDoItem(title: "Foo")
+        sut.add(item)
+        sut.checkItem(at: 0)
+        let returnedItem = sut.doneItem(at: 0)
+        XCTAssertEqual(returnedItem.title, item.title)
+        XCTAssertEqual(returnedItem, item)
+    }
+    
+}
+```
+
+- 控制台
+```swift
+Test Suite 'All tests' started at 2019-09-17 17:02:22.933
+Test Suite 'ToDoTests.xctest' started at 2019-09-17 17:02:22.935
+Test Suite 'ItemManagerTests' started at 2019-09-17 17:02:22.936
+Test Case '-[ToDoTests.ItemManagerTests test_AddItem_IncreasesToDoCountToOne]' started.
+Test Case '-[ToDoTests.ItemManagerTests test_AddItem_IncreasesToDoCountToOne]' passed (0.160 seconds).
+Test Case '-[ToDoTests.ItemManagerTests test_CheckItemAt_ChangesCounts]' started.
+Test Case '-[ToDoTests.ItemManagerTests test_CheckItemAt_ChangesCounts]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ItemManagerTests test_CheckItemAt_RemovesItFromToDoItems]' started.
+Test Case '-[ToDoTests.ItemManagerTests test_CheckItemAt_RemovesItFromToDoItems]' passed (0.004 seconds).
+Test Case '-[ToDoTests.ItemManagerTests test_DoneCount_Initially_IsZero]' started.
+Test Case '-[ToDoTests.ItemManagerTests test_DoneCount_Initially_IsZero]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ItemManagerTests test_DoneItemAt_ReturnsCheckedItem]' started.
+Test Case '-[ToDoTests.ItemManagerTests test_DoneItemAt_ReturnsCheckedItem]' passed (0.003 seconds).
+Test Case '-[ToDoTests.ItemManagerTests test_ItemAt_ReturnsAddedItem]' started.
+Test Case '-[ToDoTests.ItemManagerTests test_ItemAt_ReturnsAddedItem]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ItemManagerTests test_ToDoCount_Initially_IsZero]' started.
+Test Case '-[ToDoTests.ItemManagerTests test_ToDoCount_Initially_IsZero]' passed (0.001 seconds).
+Test Suite 'ItemManagerTests' passed at 2019-09-17 17:02:23.114.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.171 (0.178) seconds
+Test Suite 'LocationTests' started at 2019-09-17 17:02:23.116
+Test Case '-[ToDoTests.LocationTests test_EqualLocations_AreEqual]' started.
+Test Case '-[ToDoTests.LocationTests test_EqualLocations_AreEqual]' passed (0.001 seconds).
+Test Case '-[ToDoTests.LocationTests test_Init_SetsCoordinate]' started.
+Test Case '-[ToDoTests.LocationTests test_Init_SetsCoordinate]' passed (0.003 seconds).
+Test Case '-[ToDoTests.LocationTests test_Init_SetsName]' started.
+Test Case '-[ToDoTests.LocationTests test_Init_SetsName]' passed (0.001 seconds).
+Test Case '-[ToDoTests.LocationTests test_Locations_WhenLatitudeDiffers_AreNotEqual]' started.
+Test Case '-[ToDoTests.LocationTests test_Locations_WhenLatitudeDiffers_AreNotEqual]' passed (0.001 seconds).
+Test Case '-[ToDoTests.LocationTests test_Locations_WhenLongitudeDiffers_AreNotEqual]' started.
+Test Case '-[ToDoTests.LocationTests test_Locations_WhenLongitudeDiffers_AreNotEqual]' passed (0.001 seconds).
+Test Case '-[ToDoTests.LocationTests test_Locations_WhenNamesDiffer_AreNotEqual]' started.
+Test Case '-[ToDoTests.LocationTests test_Locations_WhenNamesDiffer_AreNotEqual]' passed (0.001 seconds).
+Test Case '-[ToDoTests.LocationTests test_Locations_WhenOnlyOneHasCoordinate_AreNotEqual]' started.
+Test Case '-[ToDoTests.LocationTests test_Locations_WhenOnlyOneHasCoordinate_AreNotEqual]' passed (0.001 seconds).
+Test Suite 'LocationTests' passed at 2019-09-17 17:02:23.132.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.008 (0.016) seconds
+Test Suite 'ToDoItemTests' started at 2019-09-17 17:02:23.133
+Test Case '-[ToDoTests.ToDoItemTests test_Init_SetsLocation]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_SetsLocation]' passed (0.002 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Init_SetsTimestamp]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_SetsTimestamp]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenDescription_SetsDescription]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenDescription_SetsDescription]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenTitle_SetsTitle]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenTitle_SetsTitle]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Items_WhenDescriptionsDiffer_AreNotEqual]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Items_WhenDescriptionsDiffer_AreNotEqual]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Items_WhenLocationDiffers_AreNotEqual]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Items_WhenLocationDiffers_AreNotEqual]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Items_WhenOneLocationIsNil_AreNotEqual]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Items_WhenOneLocationIsNil_AreNotEqual]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Items_WhenTimestampsDiffer_AreNotEqual]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Items_WhenTimestampsDiffer_AreNotEqual]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Items_WhenTitlesDiffer_AreNotEqual]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Items_WhenTitlesDiffer_AreNotEqual]' passed (0.001 seconds).
+Test Suite 'ToDoItemTests' passed at 2019-09-17 17:02:23.154.
+	 Executed 9 tests, with 0 failures (0 unexpected) in 0.011 (0.021) seconds
+Test Suite 'ToDoTests.xctest' passed at 2019-09-17 17:02:23.155.
+	 Executed 23 tests, with 0 failures (0 unexpected) in 0.190 (0.220) seconds
+Test Suite 'All tests' passed at 2019-09-17 17:02:23.157.
+	 Executed 23 tests, with 0 failures (0 unexpected) in 0.190 (0.224) seconds
+```
+
 
 
 - TODO
