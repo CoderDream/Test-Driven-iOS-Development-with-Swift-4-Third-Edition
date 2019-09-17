@@ -272,6 +272,79 @@ Test Suite 'All tests' passed at 2019-09-16 23:21:16.128.
 ```
 
 
+## Adding a coordinate property 新增坐标属性
+
+- Location.swift
+```swift
+import CoreLocation
+
+struct Location {
+    let name: String
+    let coordinate: CLLocationCoordinate2D?
+    init(name: String,
+         coordinate: CLLocationCoordinate2D? = nil) {
+        self.name = ""
+        self.coordinate = coordinate
+    }
+}
+```
+
+- LocationTests.swift
+```swift
+import XCTest
+@testable import ToDo
+import CoreLocation
+
+class LocationTests: XCTestCase {
+
+    override func setUp() {
+        // Put setup code here. This method is called before the invocation of each test method in the class.
+    }
+
+    override func tearDown() {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    }
+
+    func test_Init_SetsCoordinate() {
+        let coordinate =
+            CLLocationCoordinate2D(latitude: 1,
+                                   longitude: 2)
+        let location = Location(name: "",
+                                coordinate: coordinate)
+        XCTAssertEqual(location.coordinate?.latitude,
+                       coordinate.latitude)
+        XCTAssertEqual(location.coordinate?.longitude,
+                       coordinate.longitude)
+    }
+
+}
+```
+
+- 控制台
+```swift
+Test Suite 'All tests' started at 2019-09-17 15:04:59.712
+Test Suite 'ToDoTests.xctest' started at 2019-09-17 15:04:59.714
+Test Suite 'LocationTests' started at 2019-09-17 15:04:59.715
+Test Case '-[ToDoTests.LocationTests test_Init_SetsCoordinate]' started.
+Test Case '-[ToDoTests.LocationTests test_Init_SetsCoordinate]' passed (0.159 seconds).
+Test Suite 'LocationTests' passed at 2019-09-17 15:04:59.877.
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.159 (0.162) seconds
+Test Suite 'ToDoItemTests' started at 2019-09-17 15:04:59.879
+Test Case '-[ToDoTests.ToDoItemTests test_Init_SetsLocation]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_SetsLocation]' passed (0.004 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Init_SetsTimestamp]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_SetsTimestamp]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenDescription_SetsDescription]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenDescription_SetsDescription]' passed (0.001 seconds).
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenTitle_SetsTitle]' started.
+Test Case '-[ToDoTests.ToDoItemTests test_Init_WhenGivenTitle_SetsTitle]' passed (0.001 seconds).
+Test Suite 'ToDoItemTests' passed at 2019-09-17 15:04:59.890.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.007 (0.012) seconds
+Test Suite 'ToDoTests.xctest' passed at 2019-09-17 15:04:59.891.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.167 (0.177) seconds
+Test Suite 'All tests' passed at 2019-09-17 15:04:59.893.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.167 (0.181) seconds
+```
 
 - TODO
 ```swift

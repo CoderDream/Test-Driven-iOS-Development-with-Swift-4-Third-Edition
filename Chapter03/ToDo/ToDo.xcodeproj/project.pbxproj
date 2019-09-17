@@ -14,6 +14,7 @@
 		3F149BDC232FCF0300EB8517 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F149BDA232FCF0300EB8517 /* LaunchScreen.storyboard */; };
 		3F149BF2232FD01000EB8517 /* ToDoItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F149BF1232FD01000EB8517 /* ToDoItemTests.swift */; };
 		3F149BF4232FD09D00EB8517 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F149BF3232FD09D00EB8517 /* ToDoItem.swift */; };
+		3F8147F52330BC1200F998A9 /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8147F42330BC1200F998A9 /* LocationTests.swift */; };
 		3FE61127232FDE7F0010635B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE61126232FDE7F0010635B /* Location.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		3F149BE8232FCF0300EB8517 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F149BF1232FD01000EB8517 /* ToDoItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemTests.swift; sourceTree = "<group>"; };
 		3F149BF3232FD09D00EB8517 /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
+		3F8147F42330BC1200F998A9 /* LocationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTests.swift; sourceTree = "<group>"; };
 		3FE61126232FDE7F0010635B /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,6 +100,7 @@
 			children = (
 				3F149BE8232FCF0300EB8517 /* Info.plist */,
 				3F149BF1232FD01000EB8517 /* ToDoItemTests.swift */,
+				3F8147F42330BC1200F998A9 /* LocationTests.swift */,
 			);
 			path = ToDoTests;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F8147F52330BC1200F998A9 /* LocationTests.swift in Sources */,
 				3F149BF2232FD01000EB8517 /* ToDoItemTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
