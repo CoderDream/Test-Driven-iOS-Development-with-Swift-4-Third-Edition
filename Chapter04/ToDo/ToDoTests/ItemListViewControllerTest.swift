@@ -26,7 +26,27 @@ class ItemListViewControllerTest: XCTestCase {
     }
     
     func test_TableView_AfterViewDidLoad_IsNotNil() {
-        
+        let storyboard = UIStoryboard(name: "Main",
+                                      bundle: nil)
+        let viewController =
+            storyboard.instantiateViewController(
+                withIdentifier: "ItemListViewController")
+        let sut = viewController
+            as! ItemListViewController
+        sut.loadViewIfNeeded()
+        XCTAssertNotNil(sut.tableView)
+    }
+    
+    func test_LoadingView_SetsTableViewDataSource() {
+        let storyboard = UIStoryboard(name: "Main",
+                                      bundle: nil)
+        let viewController =
+            storyboard.instantiateViewController(
+                withIdentifier: "ItemListViewController")
+        let sut = viewController
+            as! ItemListViewController
+        sut.loadViewIfNeeded()
+        XCTAssertTrue(sut.tableView.dataSource is ItemListDataProvider)
     }
 
 }
