@@ -33,12 +33,12 @@
                         <viewLayoutGuide key="safeArea" id="4V4-hB-NnT"/>
                     </view>
                     <connections>
-                        <outlet property="dataProvider" destination="UGd-vs-1LF" id="vQ3-yB-jdc"/>
+                        <outlet property="dataProvider" destination="UGd-vs-1LF" id="tCC-0B-tyA"/>
                         <outlet property="tableView" destination="Gll-Hf-Bcq" id="99v-yR-sfv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VFE-25-uQx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="UGd-vs-1LF"/>
+                <customObject id="UGd-vs-1LF" customClass="ItemListDataProvider" customModule="ToDo" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="-508" y="169"/>
         </scene>
