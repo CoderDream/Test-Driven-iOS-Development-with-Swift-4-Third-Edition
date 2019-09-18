@@ -19,6 +19,7 @@
 		3F83D5AD2330E30E006CB0DF /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F83D5AC2330E30E006CB0DF /* ItemListViewController.swift */; };
 		3F83D5AF2330E36E006CB0DF /* ItemListViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F83D5AE2330E36E006CB0DF /* ItemListViewControllerTest.swift */; };
 		3F83D5B123321283006CB0DF /* ItemListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F83D5B023321283006CB0DF /* ItemListDataProvider.swift */; };
+		3F83D5B3233226DF006CB0DF /* ItemListDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F83D5B2233226DF006CB0DF /* ItemListDataProviderTests.swift */; };
 		3FE61127232FDE7F0010635B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE61126232FDE7F0010635B /* Location.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		3F83D5AC2330E30E006CB0DF /* ItemListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewController.swift; sourceTree = "<group>"; };
 		3F83D5AE2330E36E006CB0DF /* ItemListViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewControllerTest.swift; sourceTree = "<group>"; };
 		3F83D5B023321283006CB0DF /* ItemListDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListDataProvider.swift; sourceTree = "<group>"; };
+		3F83D5B2233226DF006CB0DF /* ItemListDataProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListDataProviderTests.swift; sourceTree = "<group>"; };
 		3FE61126232FDE7F0010635B /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +111,7 @@
 				3F149BE8232FCF0300EB8517 /* Info.plist */,
 				3F83D5AB2330E295006CB0DF /* Model */,
 				3F83D5AE2330E36E006CB0DF /* ItemListViewControllerTest.swift */,
+				3F83D5B2233226DF006CB0DF /* ItemListDataProviderTests.swift */,
 			);
 			path = ToDoTests;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F83D5B3233226DF006CB0DF /* ItemListDataProviderTests.swift in Sources */,
 				3F8147F72330C19100F998A9 /* ItemManagerTests.swift in Sources */,
 				3F8147F52330BC1200F998A9 /* LocationTests.swift in Sources */,
 				3F83D5AF2330E36E006CB0DF /* ItemListViewControllerTest.swift in Sources */,
