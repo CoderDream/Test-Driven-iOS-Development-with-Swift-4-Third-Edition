@@ -43,9 +43,16 @@ class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print(indexPath)
         let cell = tableView.dequeueReusableCell(
             withIdentifier: "ItemCell",
             for: indexPath)
+        
+//        let cell = tableView.dequeueReusableCell(
+//            withIdentifier: "ItemCell",
+//            for: indexPath) as! ItemCell
+        
+        print(cell)
         return cell
     }
     
