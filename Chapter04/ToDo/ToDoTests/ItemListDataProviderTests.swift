@@ -67,8 +67,8 @@ class ItemListDataProviderTests: XCTestCase {
         let cell = tableView.cellForRow(at: IndexPath(row: 0,
                                                       section: 0))
         // XCTAssertTrue(cell is ItemCell)
-        print(cell)
-        XCTAssertTrue(cell is UITableViewCell)
+        //print(cell)
+        XCTAssertTrue(cell is ItemCell)
     }
     
     func test_CellForRow_DequeuesCellFromTableView() {
@@ -92,6 +92,13 @@ extension ItemListDataProviderTests {
             cellGotDequeued = true
             return super.dequeueReusableCell(withIdentifier: identifier,
                                              for: indexPath)
+        }
+    }
+    
+    class MockItemCell : ItemCell {
+        var configCellGotCalled = false
+        override func configCell(with item: ToDoItem) {
+            configCellGotCalled = true
         }
     }
 }
