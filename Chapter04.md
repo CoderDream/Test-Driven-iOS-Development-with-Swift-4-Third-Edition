@@ -247,3 +247,114 @@ Test Suite 'Selected tests' passed at 2019-09-18 17:22:46.363.
 	 Executed 4 tests, with 0 failures (0 unexpected) in 0.670 (0.681) seconds
 ```
 
+## Register ItemCell Manual
+
+手工注册UITableViewCell，在视图中新增了对象，然后设置了Class和Identitifer，但是不起作用，还是要做视图中注册。
+
+- ItemCell.swift
+```swift
+class ItemCell: UITableViewCell {
+    func configCell(with item: ToDoItem) {
+    }
+}
+```
+
+- ItemListViewController.swift
+```swift
+class ItemListViewController: UIViewController {
+    
+    @IBOutlet var tableView: UITableView!
+    
+    @IBOutlet var dataProvider: (UITableViewDataSource & UITableViewDelegate)!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        tableView = UITableView()
+        // Do any additional setup after loading the view.
+        tableView.dataSource = dataProvider
+        tableView.delegate = dataProvider
+        // 手工注册UITableViewCell
+        self.tableView.register(ItemCell.self, forCellReuseIdentifier: "ItemCell")
+    }
+
+}
+```
+
+- ItemListDataProvider.swift
+```swift
+func tableView(_ tableView: UITableView,
+               cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    //return UITableViewCell()
+    return ItemCell()
+}
+```
+
+- ItemListDataProviderTests.swift
+```swift
+func test_CellForRow_ReturnsItemCell() {
+    sut.itemManager?.add(ToDoItem(title: "Foo"))
+    tableView.reloadData()
+    let cell = tableView.cellForRow(at: IndexPath(row: 0,
+                                                  section: 0))
+    XCTAssertTrue(cell is ItemCell)
+}
+    
+func test_CellForRow_DequeuesCellFromTableView() {
+    let mockTableView = MockTableView()
+    mockTableView.dataSource = sut
+    mockTableView.register(ItemCell.self,
+                           forCellReuseIdentifier: "ItemCell")
+    sut.itemManager?.add(ToDoItem(title: "Foo"))
+    mockTableView.reloadData()
+    _ = mockTableView.cellForRow(at: IndexPath(row: 0, section: 0))
+    XCTAssertTrue(mockTableView.cellGotDequeued)
+}
+    
+func test_CellForRow_CallsConfigCell() {
+    let mockTableView = MockTableView()
+    mockTableView.dataSource = sut
+    mockTableView.register(
+        MockItemCell.self,
+        forCellReuseIdentifier: "ItemCell")
+    let item = ToDoItem(title: "Foo")
+    sut.itemManager?.add(item)
+    mockTableView.reloadData()
+    let cell = mockTableView
+        .cellForRow(at: IndexPath(row: 0, section: 0)) as! MockItemCell
+    XCTAssertTrue(cell.configCellGotCalled)
+}
+
+// 辅助类
+class MockItemCell : ItemCell {
+    var configCellGotCalled = false
+    override func configCell(with item: ToDoItem) {
+        configCellGotCalled = true
+    }
+}
+```
+
+- 控制台
+```
+Test Suite 'Selected tests' started at 2019-09-19 17:09:46.823
+Test Suite 'ToDoTests.xctest' started at 2019-09-19 17:09:46.825
+Test Suite 'ItemListDataProviderTests' started at 2019-09-19 17:09:46.826
+Test Case '-[ToDoTests.ItemListDataProviderTests test_CellForRow_CallsConfigCell]' started.
+Test Case '-[ToDoTests.ItemListDataProviderTests test_CellForRow_CallsConfigCell]' passed (0.182 seconds).
+Test Case '-[ToDoTests.ItemListDataProviderTests test_CellForRow_DequeuesCellFromTableView]' started.
+Test Case '-[ToDoTests.ItemListDataProviderTests test_CellForRow_DequeuesCellFromTableView]' passed (0.008 seconds).
+Test Case '-[ToDoTests.ItemListDataProviderTests test_CellForRow_ReturnsItemCell]' started.
+Test Case '-[ToDoTests.ItemListDataProviderTests test_CellForRow_ReturnsItemCell]' passed (0.006 seconds).
+Test Case '-[ToDoTests.ItemListDataProviderTests test_NumberOfRows_Section1_IsToDoCount]' started.
+Test Case '-[ToDoTests.ItemListDataProviderTests test_NumberOfRows_Section1_IsToDoCount]' passed (0.007 seconds).
+Test Case '-[ToDoTests.ItemListDataProviderTests test_NumberOfRows_Section2_IsToDoneCount]' started.
+Test Case '-[ToDoTests.ItemListDataProviderTests test_NumberOfRows_Section2_IsToDoneCount]' passed (0.006 seconds).
+Test Case '-[ToDoTests.ItemListDataProviderTests test_NumberOfSections_IsTwo]' started.
+Test Case '-[ToDoTests.ItemListDataProviderTests test_NumberOfSections_IsTwo]' passed (0.006 seconds).
+Test Suite 'ItemListDataProviderTests' passed at 2019-09-19 17:09:47.047.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.215 (0.222) seconds
+Test Suite 'ToDoTests.xctest' passed at 2019-09-19 17:09:47.049.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.215 (0.224) seconds
+Test Suite 'Selected tests' passed at 2019-09-19 17:09:47.050.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.215 (0.228) seconds
+```

@@ -17,16 +17,11 @@ class ItemListDataProviderTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-//        sut = ItemListDataProvider()
-//        sut.itemManager = ItemManager()
-//        tableView = UITableView()
-//        tableView.dataSource = sut
-        
         sut = ItemListDataProvider()
         sut.itemManager = ItemManager()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         controller = storyboard.instantiateViewController(
-            withIdentifier: "ItemListViewController") as! ItemListViewController
+            withIdentifier: "ItemListViewController") as? ItemListViewController
         controller.loadViewIfNeeded()
         tableView = controller.tableView
         tableView.dataSource = sut
@@ -66,8 +61,6 @@ class ItemListDataProviderTests: XCTestCase {
         tableView.reloadData()
         let cell = tableView.cellForRow(at: IndexPath(row: 0,
                                                       section: 0))
-        // XCTAssertTrue(cell is ItemCell)
-        //print(cell)
         XCTAssertTrue(cell is ItemCell)
     }
     
@@ -80,6 +73,20 @@ class ItemListDataProviderTests: XCTestCase {
         mockTableView.reloadData()
         _ = mockTableView.cellForRow(at: IndexPath(row: 0, section: 0))
         XCTAssertTrue(mockTableView.cellGotDequeued)
+    }
+    
+    func test_CellForRow_CallsConfigCell() {
+        let mockTableView = MockTableView()
+        mockTableView.dataSource = sut
+        mockTableView.register(
+            MockItemCell.self,
+            forCellReuseIdentifier: "ItemCell")
+        let item = ToDoItem(title: "Foo")
+        sut.itemManager?.add(item)
+        mockTableView.reloadData()
+        let cell = mockTableView
+            .cellForRow(at: IndexPath(row: 0, section: 0)) as! MockItemCell
+        XCTAssertTrue(cell.configCellGotCalled)
     }
 }
 

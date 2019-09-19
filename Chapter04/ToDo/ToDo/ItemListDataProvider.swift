@@ -8,25 +8,16 @@
 
 import UIKit
 
+enum Section: Int {
+    case toDo
+    case done
+}
+
 class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate {
     var itemManager: ItemManager?
     
     func tableView(_ tableView: UITableView,
-                   numberOfRowsInSection section: Int) -> Int {
-        //return 0
-        //return itemManager?.toDoCount ?? 0
-//        let numberOfRows: Int
-//        switch section {
-//        case 0:
-//            numberOfRows = itemManager?.toDoCount ?? 0
-//        case 1:
-//            //numberOfRows = 1
-//            numberOfRows = itemManager?.doneCount ?? 0
-//        default:
-//            numberOfRows = 0
-//        }
-//        return numberOfRows
-        
+                   numberOfRowsInSection section: Int) -> Int {        
         guard let itemManager = itemManager else { return 0 }
         guard let itemSection = Section(rawValue: section) else {
             fatalError()
@@ -43,17 +34,13 @@ class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(indexPath)
+        //print(indexPath)
         let cell = tableView.dequeueReusableCell(
             withIdentifier: "ItemCell",
-            for: indexPath) as! ItemCell
-        
-//        let cell = tableView.dequeueReusableCell(
-//            withIdentifier: "ItemCell",
-//            for: indexPath) as! ItemCell
+            for: indexPath) as! ItemCell    
         
         cell.configCell(with: ToDoItem(title: ""))
-        print(cell)
+        //print(cell)
         return cell
     }
     
@@ -61,9 +48,4 @@ class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate
         in tableView: UITableView) -> Int {
         return 2
     }
-}
-
-enum Section: Int {
-    case toDo
-    case done
 }
