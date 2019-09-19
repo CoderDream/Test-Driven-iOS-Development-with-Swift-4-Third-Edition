@@ -9,8 +9,12 @@
 import UIKit
 
 class ItemListViewController: UIViewController {
-    
+
     @IBOutlet var tableView: UITableView!
+    
+    
+    
+    //@IBOutlet var tableView: UITableView!
     
     @IBOutlet var dataProvider: (UITableViewDataSource & UITableViewDelegate)!
 
@@ -18,6 +22,7 @@ class ItemListViewController: UIViewController {
         super.viewDidLoad()
 
         tableView = UITableView()
+        //titleLabel = UILabel()
         // Do any additional setup after loading the view.
         tableView.dataSource = dataProvider
         tableView.delegate = dataProvider

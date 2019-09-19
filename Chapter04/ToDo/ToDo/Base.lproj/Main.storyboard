@@ -28,7 +28,24 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eCl-RI-VsW" id="Eyh-Sa-TDU">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rvi-mh-a7A">
+                                                    <rect key="frame" x="24" y="10.5" width="42" height="22.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Rvi-mh-a7A" firstAttribute="centerY" secondItem="Eyh-Sa-TDU" secondAttribute="centerY" id="0Dk-c6-KNA"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Rvi-mh-a7A" secondAttribute="trailing" constant="20" symbolic="YES" id="Tv9-Cc-SxQ"/>
+                                                <constraint firstItem="Rvi-mh-a7A" firstAttribute="leading" secondItem="Eyh-Sa-TDU" secondAttribute="leadingMargin" constant="9" id="n6a-1Z-q9h"/>
+                                                <constraint firstItem="Rvi-mh-a7A" firstAttribute="bottom" secondItem="Eyh-Sa-TDU" secondAttribute="bottomMargin" id="zHv-Jv-qQb"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="Rvi-mh-a7A" id="6t8-ch-eM2"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -44,13 +61,13 @@
                     </view>
                     <connections>
                         <outlet property="dataProvider" destination="UGd-vs-1LF" id="tCC-0B-tyA"/>
-                        <outlet property="tableView" destination="Gll-Hf-Bcq" id="99v-yR-sfv"/>
+                        <outlet property="tableView" destination="Gll-Hf-Bcq" id="Qor-OL-6HO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VFE-25-uQx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="UGd-vs-1LF" customClass="ItemListDataProvider" customModule="ToDo" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="-508" y="169"/>
+            <point key="canvasLocation" x="-508" y="168.6656671664168"/>
         </scene>
     </scenes>
 </document>
