@@ -39,8 +39,12 @@ class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate
             withIdentifier: "ItemCell",
             for: indexPath) as! ItemCell    
         
-        cell.configCell(with: ToDoItem(title: ""))
+        //cell.configCell(with: ToDoItem(title: ""))
         //print(cell)
+        
+        if let item = itemManager?.item(at: indexPath.row) {
+            cell.configCell(with: item)
+        }
         return cell
     }
     
