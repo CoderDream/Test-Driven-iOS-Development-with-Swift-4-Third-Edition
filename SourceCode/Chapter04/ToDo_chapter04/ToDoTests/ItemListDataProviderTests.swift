@@ -23,7 +23,7 @@ class ItemListDataProviderTests: XCTestCase {
     
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     controller = storyboard.instantiateViewController(
-      withIdentifier: "ItemListViewController") as! ItemListViewController
+        withIdentifier: "ItemListViewController") as? ItemListViewController
     
     controller.loadViewIfNeeded()
     

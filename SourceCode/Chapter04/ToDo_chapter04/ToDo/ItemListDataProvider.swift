@@ -95,7 +95,7 @@ class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate
   }
   
   func tableView(_ tableView: UITableView,
-                 commit editingStyle: UITableViewCellEditingStyle,
+                 commit editingStyle: UITableViewCell.EditingStyle,
                  forRowAt indexPath: IndexPath) {
     
     

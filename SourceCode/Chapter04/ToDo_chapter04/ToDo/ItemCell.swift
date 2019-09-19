@@ -26,8 +26,8 @@ class ItemCell: UITableViewCell {
     if checked {
       let attributedString = NSAttributedString(
         string: item.title,
-        attributes: [NSAttributedStringKey.strikethroughStyle:
-          NSUnderlineStyle.styleSingle.rawValue])
+        attributes: [NSAttributedString.Key.strikethroughStyle:
+            NSUnderlineStyle.single.rawValue])
       
       
       titleLabel.attributedText = attributedString

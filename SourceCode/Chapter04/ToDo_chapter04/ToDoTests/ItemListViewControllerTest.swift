@@ -22,7 +22,7 @@ class ItemListViewControllerTest: XCTestCase {
       storyboard.instantiateViewController(
         withIdentifier: "ItemListViewController")
     sut = viewController
-      as! ItemListViewController
+        as? ItemListViewController
     
     
     sut.loadViewIfNeeded()

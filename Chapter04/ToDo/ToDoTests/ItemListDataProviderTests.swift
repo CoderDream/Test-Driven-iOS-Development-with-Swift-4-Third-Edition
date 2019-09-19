@@ -26,7 +26,7 @@ class ItemListDataProviderTests: XCTestCase {
         sut.itemManager = ItemManager()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         controller = storyboard.instantiateViewController(
-            withIdentifier: "ItemListViewController") as? ItemListViewController
+            withIdentifier: "ItemListViewController") as! ItemListViewController
         controller.loadViewIfNeeded()
         tableView = controller.tableView
         tableView.dataSource = sut

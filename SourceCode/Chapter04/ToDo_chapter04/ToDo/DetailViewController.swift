@@ -41,8 +41,8 @@ class DetailViewController: UIViewController {
     }
     
     if let coordinate = item.location?.coordinate {
-      let region = MKCoordinateRegionMakeWithDistance(coordinate,
-                                                      100, 100)
+        let region = MKCoordinateRegion(center: coordinate,
+                                        latitudinalMeters: 100, longitudinalMeters: 100)
       mapView.region = region
     }
   }

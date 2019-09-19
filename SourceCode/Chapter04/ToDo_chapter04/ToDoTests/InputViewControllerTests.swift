@@ -23,7 +23,7 @@ class InputViewControllerTests: XCTestCase {
     sut = storyboard
       .instantiateViewController(
         withIdentifier: "InputViewController")
-      as! InputViewController
+        as? InputViewController
     
     
     sut.loadViewIfNeeded()
