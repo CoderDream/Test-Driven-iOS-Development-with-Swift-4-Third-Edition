@@ -42,9 +42,22 @@ class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate
         //cell.configCell(with: ToDoItem(title: ""))
         //print(cell)
         
-        if let item = itemManager?.item(at: indexPath.row) {
-            cell.configCell(with: item)
+//        if let item = itemManager?.item(at: indexPath.row) {
+//            cell.configCell(with: item)
+//        }
+        guard let itemManager = itemManager else { fatalError() }
+        guard let section = Section(rawValue: indexPath.section) else {
+            fatalError()
         }
+        let item: ToDoItem
+        switch section {
+        case .toDo:
+            item = itemManager.item(at: indexPath.row)
+        case .done:
+            item = itemManager.doneItem(at: indexPath.row)
+        }
+        cell.configCell(with: item)
+        
         return cell
     }
     
