@@ -358,3 +358,77 @@ Test Suite 'ToDoTests.xctest' passed at 2019-09-19 17:09:47.049.
 Test Suite 'Selected tests' passed at 2019-09-19 17:09:47.050.
 	 Executed 6 tests, with 0 failures (0 unexpected) in 0.215 (0.228) seconds
 ```
+
+## Delete button
+
+
+- ItemListDataProvider.swift
+```swift
+func tableView(
+    _ tableView: UITableView,
+    titleForDeleteConfirmationButtonForRowAt indexPath:
+    IndexPath) -> String? {
+    guard let section = Section(rawValue: indexPath.section) else {
+        fatalError()
+    }
+    let buttonTitle: String
+    switch section {
+    case .toDo:
+        buttonTitle = "Check"
+    case .done:
+        buttonTitle = "Uncheck"
+    }
+    return buttonTitle
+    //return "Check"
+}
+```
+
+- ItemListDataProviderTests.swift
+```swift
+func test_DeleteButton_InFirstSection_ShowsTitleCheck() {
+    let deleteButtonTitle = tableView.delegate?.tableView?(
+        tableView,
+        titleForDeleteConfirmationButtonForRowAt: IndexPath(row: 0,
+                                                            section: 0))
+    XCTAssertEqual(deleteButtonTitle, "Check")
+}
+    
+func test_DeleteButton_InSecondSection_ShowsTitleUncheck() {
+    let deleteButtonTitle = tableView.delegate?.tableView?(
+        tableView,
+        titleForDeleteConfirmationButtonForRowAt: IndexPath(row: 0,
+                                                            section: 1))
+    XCTAssertEqual(deleteButtonTitle, "Uncheck")
+}
+```
+
+- 控制台
+```
+Test Suite 'Selected tests' started at 2019-09-19 17:34:15.947
+Test Suite 'ToDoTests.xctest' started at 2019-09-19 17:34:15.950
+Test Suite 'ItemListDataProviderTests' started at 2019-09-19 17:34:15.953
+Test Case '-[ToDoTests.ItemListDataProviderTests test_CellForRow_CallsConfigCell]' started.
+Test Case '-[ToDoTests.ItemListDataProviderTests test_CellForRow_CallsConfigCell]' passed (0.142 seconds).
+Test Case '-[ToDoTests.ItemListDataProviderTests test_CellForRow_DequeuesCellFromTableView]' started.
+Test Case '-[ToDoTests.ItemListDataProviderTests test_CellForRow_DequeuesCellFromTableView]' passed (0.013 seconds).
+Test Case '-[ToDoTests.ItemListDataProviderTests test_CellForRow_ReturnsItemCell]' started.
+Test Case '-[ToDoTests.ItemListDataProviderTests test_CellForRow_ReturnsItemCell]' passed (0.011 seconds).
+Test Case '-[ToDoTests.ItemListDataProviderTests test_CellForRow_Section2_CallsConfigCellWithDoneItem]' started.
+Test Case '-[ToDoTests.ItemListDataProviderTests test_CellForRow_Section2_CallsConfigCellWithDoneItem]' passed (0.009 seconds).
+Test Case '-[ToDoTests.ItemListDataProviderTests test_DeleteButton_InFirstSection_ShowsTitleCheck]' started.
+Test Case '-[ToDoTests.ItemListDataProviderTests test_DeleteButton_InFirstSection_ShowsTitleCheck]' passed (0.007 seconds).
+Test Case '-[ToDoTests.ItemListDataProviderTests test_DeleteButton_InSecondSection_ShowsTitleUncheck]' started.
+Test Case '-[ToDoTests.ItemListDataProviderTests test_DeleteButton_InSecondSection_ShowsTitleUncheck]' passed (0.005 seconds).
+Test Case '-[ToDoTests.ItemListDataProviderTests test_NumberOfRows_Section1_IsToDoCount]' started.
+Test Case '-[ToDoTests.ItemListDataProviderTests test_NumberOfRows_Section1_IsToDoCount]' passed (0.006 seconds).
+Test Case '-[ToDoTests.ItemListDataProviderTests test_NumberOfRows_Section2_IsToDoneCount]' started.
+Test Case '-[ToDoTests.ItemListDataProviderTests test_NumberOfRows_Section2_IsToDoneCount]' passed (0.005 seconds).
+Test Case '-[ToDoTests.ItemListDataProviderTests test_NumberOfSections_IsTwo]' started.
+Test Case '-[ToDoTests.ItemListDataProviderTests test_NumberOfSections_IsTwo]' passed (0.006 seconds).
+Test Suite 'ItemListDataProviderTests' passed at 2019-09-19 17:34:16.173.
+	 Executed 9 tests, with 0 failures (0 unexpected) in 0.206 (0.220) seconds
+Test Suite 'ToDoTests.xctest' passed at 2019-09-19 17:34:16.174.
+	 Executed 9 tests, with 0 failures (0 unexpected) in 0.206 (0.224) seconds
+Test Suite 'Selected tests' passed at 2019-09-19 17:34:16.175.
+	 Executed 9 tests, with 0 failures (0 unexpected) in 0.206 (0.228) seconds
+```

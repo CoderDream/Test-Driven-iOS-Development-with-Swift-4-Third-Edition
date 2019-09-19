@@ -16,6 +16,11 @@ enum Section: Int {
 class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate {
     var itemManager: ItemManager?
     
+    func numberOfSections(
+        in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {        
         guard let itemManager = itemManager else { return 0 }
@@ -39,12 +44,6 @@ class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate
             withIdentifier: "ItemCell",
             for: indexPath) as! ItemCell    
         
-        //cell.configCell(with: ToDoItem(title: ""))
-        //print(cell)
-        
-//        if let item = itemManager?.item(at: indexPath.row) {
-//            cell.configCell(with: item)
-//        }
         guard let itemManager = itemManager else { fatalError() }
         guard let section = Section(rawValue: indexPath.section) else {
             fatalError()
@@ -61,8 +60,21 @@ class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate
         return cell
     }
     
-    func numberOfSections(
-        in tableView: UITableView) -> Int {
-        return 2
+    func tableView(
+        _ tableView: UITableView,
+        titleForDeleteConfirmationButtonForRowAt indexPath:
+        IndexPath) -> String? {
+        guard let section = Section(rawValue: indexPath.section) else {
+            fatalError()
+        }
+        let buttonTitle: String
+        switch section {
+        case .toDo:
+            buttonTitle = "Check"
+        case .done:
+            buttonTitle = "Uncheck"
+        }
+        return buttonTitle
+        //return "Check"
     }
 }

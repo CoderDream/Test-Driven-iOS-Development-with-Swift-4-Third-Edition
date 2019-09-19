@@ -25,6 +25,7 @@ class ItemListDataProviderTests: XCTestCase {
         controller.loadViewIfNeeded()
         tableView = controller.tableView
         tableView.dataSource = sut
+        tableView.delegate = sut
     }
 
     override func tearDown() {
@@ -65,7 +66,6 @@ class ItemListDataProviderTests: XCTestCase {
     }
     
     func test_CellForRow_DequeuesCellFromTableView() {
-        //let mockTableView = MockTableView()
         let mockTableView = MockTableView.mockTableView(withDataSource: sut)
         mockTableView.dataSource = sut
         mockTableView.register(ItemCell.self,
@@ -77,7 +77,6 @@ class ItemListDataProviderTests: XCTestCase {
     }
     
     func test_CellForRow_CallsConfigCell() {
-        //let mockTableView = MockTableView()
         let mockTableView = MockTableView.mockTableView(withDataSource: sut)
         mockTableView.dataSource = sut
         mockTableView.register(
@@ -88,15 +87,10 @@ class ItemListDataProviderTests: XCTestCase {
         mockTableView.reloadData()
         let cell = mockTableView
             .cellForRow(at: IndexPath(row: 0, section: 0)) as! MockItemCell
-        //XCTAssertTrue(cell.configCellGotCalled)
         XCTAssertEqual(cell.catchedItem, item)
     }
     
     func test_CellForRow_Section2_CallsConfigCellWithDoneItem() {
-        //let mockTableView = MockTableView()
-//        let mockTableView = MockTableView(
-//            frame: CGRect(x: 0, y:0, width: 320, height: 480),
-//            style: .plain)
         let mockTableView = MockTableView.mockTableView(withDataSource: sut)
         mockTableView.dataSource = sut
         mockTableView.register(MockItemCell.self,
@@ -109,6 +103,22 @@ class ItemListDataProviderTests: XCTestCase {
         let cell = mockTableView
             .cellForRow(at: IndexPath(row: 0, section: 1)) as! MockItemCell
         XCTAssertEqual(cell.catchedItem, second)
+    }
+    
+    func test_DeleteButton_InFirstSection_ShowsTitleCheck() {
+        let deleteButtonTitle = tableView.delegate?.tableView?(
+            tableView,
+            titleForDeleteConfirmationButtonForRowAt: IndexPath(row: 0,
+                                                                section: 0))
+        XCTAssertEqual(deleteButtonTitle, "Check")
+    }
+    
+    func test_DeleteButton_InSecondSection_ShowsTitleUncheck() {
+        let deleteButtonTitle = tableView.delegate?.tableView?(
+            tableView,
+            titleForDeleteConfirmationButtonForRowAt: IndexPath(row: 0,
+                                                                section: 1))
+        XCTAssertEqual(deleteButtonTitle, "Uncheck")
     }
 }
 
