@@ -2,7 +2,7 @@
 //  ItemListDataProvider.swift
 //  ToDo
 //
-//  Created by CoderDream on 2019/9/18.
+//  Created by CoderDream on 2019/9/20.
 //  Copyright © 2019 CoderDream. All rights reserved.
 //
 
@@ -13,7 +13,8 @@ enum Section: Int {
     case done
 }
 
-class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate {
+class ItemListDataProvider: NSObject, UITableViewDataSource {
+    
     var itemManager: ItemManager?
     
     func numberOfSections(
@@ -22,7 +23,7 @@ class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView,
-                   numberOfRowsInSection section: Int) -> Int {        
+                   numberOfRowsInSection section: Int) -> Int {
         guard let itemManager = itemManager else { return 0 }
         guard let itemSection = Section(rawValue: section) else {
             fatalError()
@@ -36,62 +37,11 @@ class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate
         }
         return numberOfRows
     }
-    
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //print(indexPath)
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: "ItemCell",
-            for: indexPath) as! ItemCell    
-        
-        guard let itemManager = itemManager else { fatalError() }
-        guard let section = Section(rawValue: indexPath.section) else {
-            fatalError()
-        }
-        let item: ToDoItem
-        switch section {
-        case .toDo:
-            item = itemManager.item(at: indexPath.row)
-        case .done:
-            item = itemManager.doneItem(at: indexPath.row)
-        }
-        cell.configCell(with: item)
-        
+            withIdentifier: "itemCell",
+            for: indexPath)
         return cell
-    }
-    
-    func tableView(
-        _ tableView: UITableView,
-        titleForDeleteConfirmationButtonForRowAt indexPath:
-        IndexPath) -> String? {
-        guard let section = Section(rawValue: indexPath.section) else {
-            fatalError()
-        }
-        let buttonTitle: String
-        switch section {
-        case .toDo:
-            buttonTitle = "Check"
-        case .done:
-            buttonTitle = "Uncheck"
-        }
-        return buttonTitle
-    }
-    
-    func tableView(_ tableView: UITableView,
-                   commit editingStyle: UITableViewCell.EditingStyle,
-                   forRowAt indexPath: IndexPath) {
-//        itemManager?.checkItem(at: indexPath.row)
-//        tableView.reloadData()
-        guard let itemManager = itemManager else { fatalError() }
-        guard let section = Section(rawValue: indexPath.section) else {
-            fatalError()
-        }
-        switch section {
-        case .toDo:
-            itemManager.checkItem(at: indexPath.row)
-        case .done:
-            itemManager.uncheckItem(at: indexPath.row)
-        }
-        tableView.reloadData()
     }
 }
