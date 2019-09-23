@@ -86,6 +86,7 @@ class ItemListDataProviderTests: XCTestCase {
                 at: IndexPath(row: 0, section: 0))
             as! MockItemCell
         XCTAssertEqual(cell.catchedItem, item)
+        //XCTAssertTrue(cell.configCellGotCalled)
     }
     
     func test_CellForRow_Section2_CallsConfigCellWithDoneItem() {
@@ -174,5 +175,12 @@ extension ItemListDataProviderTests {
             catchedItem = item
         }
     }
+    
+//    class MockItemCell : ItemCell {
+//        var configCellGotCalled = false
+//        override func configCell(with item: ToDoItem) {
+//            configCellGotCalled = true
+//        }
+//    }
 
 }

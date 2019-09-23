@@ -41,7 +41,8 @@ class ItemListDataProvider: NSObject, UITableViewDataSource {
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: "ItemCell",
-            for: indexPath)
+            for: indexPath) as! ItemCell
+        //cell.configCell(with: ToDoItem(title: ""))
         return cell
     }
 }

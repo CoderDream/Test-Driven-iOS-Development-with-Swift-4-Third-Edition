@@ -80,8 +80,6 @@ class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView,
                    commit editingStyle: UITableViewCell.EditingStyle,
                    forRowAt indexPath: IndexPath) {
-//        itemManager?.checkItem(at: indexPath.row)
-//        tableView.reloadData()
         guard let itemManager = itemManager else { fatalError() }
         guard let section = Section(rawValue: indexPath.section) else {
             fatalError()

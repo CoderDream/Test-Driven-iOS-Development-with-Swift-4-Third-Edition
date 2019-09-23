@@ -45,6 +45,7 @@ class ItemCellTests: XCTestCase {
   }
   
   func test_HasNameLabel() {
+    print(cell.titleLabel)
     XCTAssertTrue(cell.titleLabel.isDescendant(of: cell.contentView))
   }
   
