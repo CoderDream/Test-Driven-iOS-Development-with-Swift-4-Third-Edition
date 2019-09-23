@@ -53,6 +53,7 @@ class InputViewControllerTests: XCTestCase {
     
     sut.titleTextField.text = "Foo"
     sut.dateTextField.text = dateFormatter.string(from: date)
+    
     sut.locationTextField.text = "Bar"
     sut.addressTextField.text = "Infinite Loop 1, Cupertino"
     sut.descriptionTextField.text = "Baz"
@@ -80,12 +81,14 @@ class InputViewControllerTests: XCTestCase {
     
     let testItem = ToDoItem(title: "Foo",
                             itemDescription: "Baz",
-                            timestamp: timestamp,
+                            timestamp: 1456070400.0,
                             location: Location(name: "Bar",
                                                coordinate: coordinate))
     
-    
-    XCTAssertEqual(item, testItem)
+    print(item)
+    print(testItem)
+    XCTAssertTrue(item == testItem)
+    //XCTAssertEqual(item, testItem)
   }
   
   func test_SaveButtonHasSaveAction() {

@@ -50,7 +50,7 @@ class InputViewController: UIViewController {
           
           let placeMark = placeMarks?.first
           
-          
+            print("timestamp: \(String(describing: date?.timeIntervalSince1970))")
           let item = ToDoItem(
             title: titleString,
             itemDescription: descriptionString,

@@ -30,18 +30,24 @@ struct ToDoItem: Equatable {
     
     
     if lhs.location != rhs.location {
+        //print("location not equal")
       return false
     }
     
     if lhs.timestamp != rhs.timestamp {
+        print("timestamp not equal: ")
+        print("\t lhs \(String(describing: lhs.timestamp))")
+        print("\t rhs \(String(describing: rhs.timestamp))")
       return false
     }
     
     if lhs.itemDescription != rhs.itemDescription {
+        //print("itemDescription not equal")
       return false
     }
     
-    if lhs.title != rhs.title { 
+    if lhs.title != rhs.title {
+       // print("title not equal")
       return false 
     } 
     
