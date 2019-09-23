@@ -436,3 +436,9 @@ Test Suite 'Selected tests' passed at 2019-09-19 17:34:16.175.
 ## Versions
 
 1. V0.4 使用书中第4章代码里面的main文件；
+
+
+[ToDoTests.ItemListDataProviderTests test_CellForRow_ReturnsItemCell] : failed: 
+caught "NSInternalInconsistencyException", 
+"unable to dequeue a cell with identifier ItemCell - 
+must register a nib or a class for the identifier or connect a prototype cell in a storyboard"
