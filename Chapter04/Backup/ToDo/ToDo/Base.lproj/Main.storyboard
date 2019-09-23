@@ -70,7 +70,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="dataProvider" destination="ZKw-jr-5SX" id="85d-Ku-9v5"/>
+                        <outlet property="dataProvider" destination="ZKw-jr-5SX" id="bOD-SH-EcE"/>
                         <outlet property="tableView" destination="WXV-K9-t3f" id="nnK-ik-T2c"/>
                     </connections>
                 </viewController>
