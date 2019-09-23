@@ -59,17 +59,17 @@ class ItemListDataProviderTests: XCTestCase {
     
     func test_CellForRow_ReturnsItemCell() {
         sut.itemManager?.add(ToDoItem(title: "Foo"))
+        tableView.register(ItemCell.self, forCellReuseIdentifier: "ItemCell") // TODO
         tableView.reloadData()
-        let cell = tableView.cellForRow(at: IndexPath(row: 0,
+        
+        let cell =
+            tableView.cellForRow(at: IndexPath(row: 0,
                                                       section: 0))
         XCTAssertTrue(cell is ItemCell)
     }
     
     func test_CellForRow_DequeuesCellFromTableView() {
         let mockTableView = MockTableView.mockTableView(withDataSource: sut)
-        mockTableView.dataSource = sut
-        mockTableView.register(ItemCell.self,
-                               forCellReuseIdentifier: "ItemCell")
         sut.itemManager?.add(ToDoItem(title: "Foo"))
         mockTableView.reloadData()
         _ = mockTableView.cellForRow(at: IndexPath(row: 0, section: 0))
@@ -78,23 +78,18 @@ class ItemListDataProviderTests: XCTestCase {
     
     func test_CellForRow_CallsConfigCell() {
         let mockTableView = MockTableView.mockTableView(withDataSource: sut)
-        mockTableView.dataSource = sut
-        mockTableView.register(
-            MockItemCell.self,
-            forCellReuseIdentifier: "ItemCell")
         let item = ToDoItem(title: "Foo")
         sut.itemManager?.add(item)
         mockTableView.reloadData()
         let cell = mockTableView
-            .cellForRow(at: IndexPath(row: 0, section: 0)) as! MockItemCell
+            .cellForRow(
+                at: IndexPath(row: 0, section: 0))
+            as! MockItemCell
         XCTAssertEqual(cell.catchedItem, item)
     }
     
     func test_CellForRow_Section2_CallsConfigCellWithDoneItem() {
         let mockTableView = MockTableView.mockTableView(withDataSource: sut)
-        mockTableView.dataSource = sut
-        mockTableView.register(MockItemCell.self,
-                               forCellReuseIdentifier: "ItemCell")
         sut.itemManager?.add(ToDoItem(title: "Foo"))
         let second = ToDoItem(title: "Bar")
         sut.itemManager?.add(second)
