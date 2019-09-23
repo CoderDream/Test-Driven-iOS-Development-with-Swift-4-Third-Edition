@@ -151,15 +151,9 @@ class ItemListDataProviderTests: XCTestCase {
 extension ItemListDataProviderTests {
     class MockTableView: UITableView {
         var cellGotDequeued = false
-        override func dequeueReusableCell(
-            withIdentifier identifier: String,
-            for indexPath: IndexPath) -> UITableViewCell {
-            cellGotDequeued = true
-            return super.dequeueReusableCell(withIdentifier: identifier,
-                                             for: indexPath)
-        }
         
-        class func mockTableView(withDataSource dataSource: UITableViewDataSource)
+        class func mockTableView(
+            withDataSource dataSource: UITableViewDataSource)
             -> MockTableView {
                 let mockTableView = MockTableView(
                     frame: CGRect(x: 0, y: 0, width: 320, height: 480),
@@ -168,6 +162,14 @@ extension ItemListDataProviderTests {
                 mockTableView.register(MockItemCell.self,
                                        forCellReuseIdentifier: "ItemCell")
                 return mockTableView
+        }
+                
+        override func dequeueReusableCell(
+            withIdentifier identifier: String,
+            for indexPath: IndexPath) -> UITableViewCell {
+            cellGotDequeued = true
+            return super.dequeueReusableCell(withIdentifier: identifier,
+                                             for: indexPath)
         }
     }
     

@@ -12,8 +12,6 @@ class ItemListViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
     
-    
-    
     //@IBOutlet var tableView: UITableView!
     
     @IBOutlet var dataProvider: (UITableViewDataSource & UITableViewDelegate)!
@@ -27,7 +25,7 @@ class ItemListViewController: UIViewController {
         tableView.dataSource = dataProvider
         tableView.delegate = dataProvider
         
-        //self.tableView.register(ItemCell.self, forCellReuseIdentifier: "ItemCell")
+        self.tableView.register(ItemCell.self, forCellReuseIdentifier: "ItemCell")
     }
 
 }

@@ -37,6 +37,23 @@
                BlueprintName = "ToDoTests"
                ReferencedContainer = "container:ToDo.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "ItemCellTests">
+               </Test>
+               <Test
+                  Identifier = "ItemListViewControllerTest">
+               </Test>
+               <Test
+                  Identifier = "ItemManagerTests">
+               </Test>
+               <Test
+                  Identifier = "LocationTests">
+               </Test>
+               <Test
+                  Identifier = "ToDoItemTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>
