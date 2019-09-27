@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FB63625233E62C400611E7E /* APIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB63624233E62C400611E7E /* APIClientTests.swift */; };
+		3FB63627233E630600611E7E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB63626233E630600611E7E /* APIClient.swift */; };
+		3FB63629233E646500611E7E /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB63628233E646500611E7E /* Token.swift */; };
 		F201229A1F52A3A10005EC45 /* ItemCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20122991F52A3A10005EC45 /* ItemCellTests.swift */; };
 		F201229C1F5360320005EC45 /* DetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F201229B1F5360320005EC45 /* DetailViewControllerTests.swift */; };
 		F201229E1F547BA70005EC45 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F201229D1F547BA60005EC45 /* DetailViewController.swift */; };
@@ -42,6 +45,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3FB63624233E62C400611E7E /* APIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientTests.swift; sourceTree = "<group>"; };
+		3FB63626233E630600611E7E /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		3FB63628233E646500611E7E /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		F20122991F52A3A10005EC45 /* ItemCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCellTests.swift; sourceTree = "<group>"; };
 		F201229B1F5360320005EC45 /* DetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewControllerTests.swift; sourceTree = "<group>"; };
 		F201229D1F547BA60005EC45 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +156,8 @@
 				F2C942D01F3F21A700EF5FE8 /* Assets.xcassets */,
 				F2C942D21F3F21A700EF5FE8 /* LaunchScreen.storyboard */,
 				F2C942D51F3F21A700EF5FE8 /* Info.plist */,
+				3FB63626233E630600611E7E /* APIClient.swift */,
+				3FB63628233E646500611E7E /* Token.swift */,
 			);
 			path = ToDo;
 			sourceTree = "<group>";
@@ -161,6 +169,7 @@
 				3FC5F22E233DD88400554121 /* Controller */,
 				F20122991F52A3A10005EC45 /* ItemCellTests.swift */,
 				F2C942E01F3F21A700EF5FE8 /* Info.plist */,
+				3FB63624233E62C400611E7E /* APIClientTests.swift */,
 			);
 			path = ToDoTests;
 			sourceTree = "<group>";
@@ -295,8 +304,10 @@
 				F201229E1F547BA70005EC45 /* DetailViewController.swift in Sources */,
 				F2F2722F1F54A9FC002AEF13 /* InputViewController.swift in Sources */,
 				F2DF19511F50B80600F6DFF8 /* ItemCell.swift in Sources */,
+				3FB63629233E646500611E7E /* Token.swift in Sources */,
 				F2C942CC1F3F21A700EF5FE8 /* ViewController.swift in Sources */,
 				F247407B1F507B06001EDF51 /* ItemListDataProvider.swift in Sources */,
+				3FB63627233E630600611E7E /* APIClient.swift in Sources */,
 				F2EAFE6C1F3F320800359506 /* ItemManager.swift in Sources */,
 				F2C942CA1F3F21A700EF5FE8 /* AppDelegate.swift in Sources */,
 				F2EAFE661F3F2BCF00359506 /* Location.swift in Sources */,
@@ -315,6 +326,7 @@
 				F2F2722D1F54A951002AEF13 /* InputViewControllerTests.swift in Sources */,
 				F2EAFE681F3F2D8C00359506 /* LocationTests.swift in Sources */,
 				F201229C1F5360320005EC45 /* DetailViewControllerTests.swift in Sources */,
+				3FB63625233E62C400611E7E /* APIClientTests.swift in Sources */,
 				F2E922C81F50746C00691166 /* ItemListViewControllerTest.swift in Sources */,
 				F2EAFE621F3F247B00359506 /* ToDoItemTests.swift in Sources */,
 			);

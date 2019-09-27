@@ -42,6 +42,9 @@
                   Identifier = "DetailViewControllerTests">
                </Test>
                <Test
+                  Identifier = "InputViewControllerTests">
+               </Test>
+               <Test
                   Identifier = "ItemCellTests">
                </Test>
                <Test
