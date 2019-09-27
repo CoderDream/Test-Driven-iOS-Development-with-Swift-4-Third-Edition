@@ -106,18 +106,17 @@ class InputViewControllerTests: XCTestCase {
     
     let geocoderAnswered = expectation(description: "Geocoder")
     
-    
-    let address = "Infinite Loop 1, Cupertino"
-    CLGeocoder()
-      .geocodeAddressString(address) {
+    //let address = "Infinite Loop 1, Cupertino"
+    let address = "光谷天地"
+    CLGeocoder().geocodeAddressString(address) {
         (placemarks, error) -> Void in
         
-        let coordinate =
-          placemarks?.first?.location?.coordinate
-        guard let latitude =
-          coordinate?.latitude else {
-            
-            
+        let coordinate = placemarks?.first?.location?.coordinate
+        print(placemarks)
+        print(placemarks?.first)
+        print(placemarks?.first?.location)
+        print(coordinate)
+        guard let latitude = coordinate?.latitude else {
             XCTFail()
             return
         }
@@ -138,8 +137,7 @@ class InputViewControllerTests: XCTestCase {
         geocoderAnswered.fulfill()
     }
     
-    waitForExpectations(timeout: 3,
-                        handler: nil)
+    waitForExpectations(timeout: 3, handler: nil)
   }
 }
 

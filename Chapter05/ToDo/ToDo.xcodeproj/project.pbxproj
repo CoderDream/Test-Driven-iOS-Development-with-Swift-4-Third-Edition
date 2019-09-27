@@ -13,8 +13,6 @@
 		F21696061F54806E00287B38 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21696051F54806E00287B38 /* MapKit.framework */; };
 		F247407B1F507B06001EDF51 /* ItemListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F247407A1F507B06001EDF51 /* ItemListDataProvider.swift */; };
 		F27AA8981F50831300F9AC27 /* ItemListDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27AA8971F50831300F9AC27 /* ItemListDataProviderTests.swift */; };
-		F29E48011F642ED000E7869D /* APIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29E48001F642ED000E7869D /* APIClientTests.swift */; };
-		F29E48031F642F7B00E7869D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29E48021F642F7B00E7869D /* APIClient.swift */; };
 		F2C942CA1F3F21A700EF5FE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C942C91F3F21A700EF5FE8 /* AppDelegate.swift */; };
 		F2C942CC1F3F21A700EF5FE8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C942CB1F3F21A700EF5FE8 /* ViewController.swift */; };
 		F2C942CF1F3F21A700EF5FE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2C942CD1F3F21A700EF5FE8 /* Main.storyboard */; };
@@ -31,7 +29,6 @@
 		F2EAFE6C1F3F320800359506 /* ItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EAFE6B1F3F320800359506 /* ItemManager.swift */; };
 		F2F2722D1F54A951002AEF13 /* InputViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F2722C1F54A951002AEF13 /* InputViewControllerTests.swift */; };
 		F2F2722F1F54A9FC002AEF13 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F2722E1F54A9FC002AEF13 /* InputViewController.swift */; };
-		F2FC6B431F64320F006F1FDC /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FC6B421F64320F006F1FDC /* Token.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,8 +48,6 @@
 		F21696051F54806E00287B38 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F247407A1F507B06001EDF51 /* ItemListDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListDataProvider.swift; sourceTree = "<group>"; };
 		F27AA8971F50831300F9AC27 /* ItemListDataProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListDataProviderTests.swift; sourceTree = "<group>"; };
-		F29E48001F642ED000E7869D /* APIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientTests.swift; sourceTree = "<group>"; };
-		F29E48021F642F7B00E7869D /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		F2C942C61F3F21A700EF5FE8 /* ToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2C942C91F3F21A700EF5FE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2C942CB1F3F21A700EF5FE8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -73,7 +68,6 @@
 		F2EAFE6B1F3F320800359506 /* ItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemManager.swift; sourceTree = "<group>"; };
 		F2F2722C1F54A951002AEF13 /* InputViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewControllerTests.swift; sourceTree = "<group>"; };
 		F2F2722E1F54A9FC002AEF13 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
-		F2FC6B421F64320F006F1FDC /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,36 +89,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F21696041F54806E00287B38 /* Frameworks */ = {
+		3FC5F22D233DD86500554121 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				F21696051F54806E00287B38 /* MapKit.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		F29E47FE1F5DE70600E7869D /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				F2E922C91F5074F700691166 /* ItemListViewController.swift */,
 				F247407A1F507B06001EDF51 /* ItemListDataProvider.swift */,
-				F2DF19501F50B80600F6DFF8 /* ItemCell.swift */,
+				F2E922C91F5074F700691166 /* ItemListViewController.swift */,
 				F201229D1F547BA60005EC45 /* DetailViewController.swift */,
 				F2F2722E1F54A9FC002AEF13 /* InputViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		F29E47FF1F5DE71400E7869D /* Controller */ = {
+		3FC5F22E233DD88400554121 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				F2E922C71F50746C00691166 /* ItemListViewControllerTest.swift */,
 				F27AA8971F50831300F9AC27 /* ItemListDataProviderTests.swift */,
-				F20122991F52A3A10005EC45 /* ItemCellTests.swift */,
 				F201229B1F5360320005EC45 /* DetailViewControllerTests.swift */,
 				F2F2722C1F54A951002AEF13 /* InputViewControllerTests.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		F21696041F54806E00287B38 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F21696051F54806E00287B38 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		F2C942BD1F3F21A700EF5FE8 = {
@@ -152,9 +144,8 @@
 				F2C942C91F3F21A700EF5FE8 /* AppDelegate.swift */,
 				F2C942CB1F3F21A700EF5FE8 /* ViewController.swift */,
 				F2E922C61F50743B00691166 /* Model */,
-				F29E47FE1F5DE70600E7869D /* Controller */,
-				F29E48021F642F7B00E7869D /* APIClient.swift */,
-				F2FC6B421F64320F006F1FDC /* Token.swift */,
+				3FC5F22D233DD86500554121 /* Controller */,
+				F2DF19501F50B80600F6DFF8 /* ItemCell.swift */,
 				F2C942CD1F3F21A700EF5FE8 /* Main.storyboard */,
 				F2C942D01F3F21A700EF5FE8 /* Assets.xcassets */,
 				F2C942D21F3F21A700EF5FE8 /* LaunchScreen.storyboard */,
@@ -167,8 +158,8 @@
 			isa = PBXGroup;
 			children = (
 				F2E922C51F50743100691166 /* Model */,
-				F29E47FF1F5DE71400E7869D /* Controller */,
-				F29E48001F642ED000E7869D /* APIClientTests.swift */,
+				3FC5F22E233DD88400554121 /* Controller */,
+				F20122991F52A3A10005EC45 /* ItemCellTests.swift */,
 				F2C942E01F3F21A700EF5FE8 /* Info.plist */,
 			);
 			path = ToDoTests;
@@ -239,7 +230,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = dasdom;
 				TargetAttributes = {
 					F2C942C51F3F21A700EF5FE8 = {
@@ -304,10 +295,8 @@
 				F201229E1F547BA70005EC45 /* DetailViewController.swift in Sources */,
 				F2F2722F1F54A9FC002AEF13 /* InputViewController.swift in Sources */,
 				F2DF19511F50B80600F6DFF8 /* ItemCell.swift in Sources */,
-				F2FC6B431F64320F006F1FDC /* Token.swift in Sources */,
 				F2C942CC1F3F21A700EF5FE8 /* ViewController.swift in Sources */,
 				F247407B1F507B06001EDF51 /* ItemListDataProvider.swift in Sources */,
-				F29E48031F642F7B00E7869D /* APIClient.swift in Sources */,
 				F2EAFE6C1F3F320800359506 /* ItemManager.swift in Sources */,
 				F2C942CA1F3F21A700EF5FE8 /* AppDelegate.swift in Sources */,
 				F2EAFE661F3F2BCF00359506 /* Location.swift in Sources */,
@@ -326,7 +315,6 @@
 				F2F2722D1F54A951002AEF13 /* InputViewControllerTests.swift in Sources */,
 				F2EAFE681F3F2D8C00359506 /* LocationTests.swift in Sources */,
 				F201229C1F5360320005EC45 /* DetailViewControllerTests.swift in Sources */,
-				F29E48011F642ED000E7869D /* APIClientTests.swift in Sources */,
 				F2E922C81F50746C00691166 /* ItemListViewControllerTest.swift in Sources */,
 				F2EAFE621F3F247B00359506 /* ToDoItemTests.swift in Sources */,
 			);
@@ -376,6 +364,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -383,6 +372,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -410,12 +400,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -433,6 +424,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -440,6 +432,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -461,10 +454,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -475,10 +469,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6GP5VW643M;
 				INFOPLIST_FILE = ToDo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coderdream126.ToDo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -489,10 +484,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6GP5VW643M;
 				INFOPLIST_FILE = ToDo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coderdream126.ToDo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
