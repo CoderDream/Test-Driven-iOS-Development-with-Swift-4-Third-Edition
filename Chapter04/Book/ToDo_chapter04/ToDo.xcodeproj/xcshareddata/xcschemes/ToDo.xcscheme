@@ -39,10 +39,10 @@
             </BuildableReference>
             <SkippedTests>
                <Test
-                  Identifier = "DetailViewControllerTests">
+                  Identifier = "InputViewControllerTests">
                </Test>
                <Test
-                  Identifier = "InputViewControllerTests">
+                  Identifier = "ItemCellTests">
                </Test>
                <Test
                   Identifier = "ItemListDataProviderTests">

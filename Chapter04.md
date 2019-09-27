@@ -652,3 +652,182 @@ Test Suite 'ToDoTests.xctest' passed at 2019-09-27 10:08:19.083.
 Test Suite 'Selected tests' passed at 2019-09-27 10:08:19.085.
 	 Executed 7 tests, with 0 failures (0 unexpected) in 0.218 (0.233) seconds
 ```
+
+## DetailViewController
+
+- DetailViewController.swift
+```swift
+class DetailViewController: UIViewController {
+    
+    @IBOutlet var titleLabel: UILabel!            // 标题标签
+    @IBOutlet var dateLabel: UILabel!             // 日期标签
+    @IBOutlet var locationLabel: UILabel!         // 地点标签
+    @IBOutlet var descriptionLabel: UILabel!      // 描述标签
+    @IBOutlet var mapView: MKMapView!             // 地图对象
+    
+    var itemInfo: (ItemManager, Int)?             // 项目信息对象
+    
+    // 日期格式化对象
+    let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        return dateFormatter
+    }()
+    
+    // 视图显示到屏幕之前调用
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // 得到项目信息
+        guard let itemInfo = itemInfo else { return }
+        // 得到第一个项目
+        let item = itemInfo.0.item(at: itemInfo.1)
+        // 设置视图的标题文本
+        titleLabel.text = item.title
+        // 设置视图的地点文本
+        locationLabel.text = item.location?.name
+        // 设置视图的描述文本
+        descriptionLabel.text = item.itemDescription
+        // 设置视图的时间文本
+        if let timestamp = item.timestamp {
+            let date = Date(timeIntervalSince1970: timestamp)
+            dateLabel.text = dateFormatter.string(from: date)
+        }
+        // 设置视图的地图视图信息
+        if let coordinate = item.location?.coordinate {
+            let region = MKCoordinateRegion(center: coordinate,
+                                            latitudinalMeters: 100, longitudinalMeters: 100)
+            mapView.region = region
+        }
+    }
+    
+    // 完成项目
+    func checkItem() {
+        if let itemInfo = itemInfo {
+            itemInfo.0.checkItem(at: itemInfo.1)
+        }
+    }
+}
+```
+
+- DetailViewControllerTests.swift
+```swift
+import CoreLocation
+
+class DetailViewControllerTests: XCTestCase {
+    // 详情视图控制器
+    var sut: DetailViewController!
+    
+    override func setUp() {
+        super.setUp()
+        // 故事版
+        let storyboard = UIStoryboard(name: "Main",
+                                      bundle: nil)
+        // 通过故事版创建详情视图控制器对象
+        sut = storyboard
+            .instantiateViewController(
+                withIdentifier: "DetailViewController")
+            as? DetailViewController
+        // 加载视图控制器
+        sut.loadViewIfNeeded()
+    }
+    
+    override func tearDown() {
+        super.tearDown()
+    }
+    
+    // 判断是否有标题标签
+    func test_HasTitleLabel() {
+        // 获得标题标签
+        let titleLabelIsSubView = sut.titleLabel?.isDescendant(of: sut.view) ?? false
+        // sut.view里包含标签标签
+        XCTAssertTrue(titleLabelIsSubView)
+    }
+    
+    // 判断是否有地图视图对象
+    func test_HasMapView() {
+        // 获得地图视图对象
+        let mapViewIsSubView = sut.mapView?.isDescendant(of: sut.view) ?? false
+        // sut.view里包含地图视图对象
+        XCTAssertTrue(mapViewIsSubView)
+    }
+    
+    // 测试设置事项信息
+    func test_SettingItemInfo_SetsTextsToLabels() {
+        // 创建地理位置对象
+        let coordinate = CLLocationCoordinate2DMake(51.2277, 6.7735)
+        // 创建地点对象，参数为名称和地理位置
+        let location = Location(name: "Foo", coordinate: coordinate)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        let date = dateFormatter.date(from: "08/27/2017")
+        let timestamp = date?.timeIntervalSince1970
+        // 根据标题、描述、时间戳和地点创建事项
+        let item = ToDoItem(title: "Bar",
+                            itemDescription: "Baz",
+                            timestamp: timestamp,
+                            location: location)
+        // 新建项目管理对象
+        let itemManager = ItemManager()
+        // 添加项目
+        itemManager.add(item)
+        // 设置视图控制器的项目信息
+        sut.itemInfo = (itemManager, 0)
+        // 开始转场
+        sut.beginAppearanceTransition(true, animated: true)
+        // 结束转场
+        sut.endAppearanceTransition()
+        // 判断标题文本是否相等
+        XCTAssertEqual(sut.titleLabel.text, "Bar")
+        // 判断日期文本是否相等
+        XCTAssertEqual(sut.dateLabel.text, "08/27/2017")
+        // 判断地点文本是否相等
+        XCTAssertEqual(sut.locationLabel.text, "Foo")
+        // 判断描述文本是否相等
+        XCTAssertEqual(sut.descriptionLabel.text, "Baz")
+        // 判断精度信息是否相等
+        XCTAssertEqual(sut.mapView.centerCoordinate.latitude,
+                       coordinate.latitude,
+                       accuracy: 0.001)
+        // 判断维度信息是否相等
+        XCTAssertEqual(sut.mapView.centerCoordinate.longitude,
+                       coordinate.longitude,
+                       accuracy: 0.001)
+    }
+    
+    func test_CheckItem_ChecksItemInItemManager() {
+        // 新建项目管理对象
+        let itemManager = ItemManager()
+        // 添加匿名项目对象
+        itemManager.add(ToDoItem(title: "Foo"))
+        // 设置视图控制器的项目信息
+        sut.itemInfo = (itemManager, 0)
+        // 完成项目
+        sut.checkItem()
+        // 判断待办数目是否为0
+        XCTAssertEqual(itemManager.toDoCount, 0)
+        // 判断待办数目是否为1
+        XCTAssertEqual(itemManager.doneCount, 1)
+    }
+}
+```
+
+- 控制台  
+```
+Test Suite 'Selected tests' started at 2019-09-27 10:46:24.699
+Test Suite 'ToDoTests.xctest' started at 2019-09-27 10:46:24.701
+Test Suite 'DetailViewControllerTests' started at 2019-09-27 10:46:24.702
+Test Case '-[ToDoTests.DetailViewControllerTests test_CheckItem_ChecksItemInItemManager]' started.
+Test Case '-[ToDoTests.DetailViewControllerTests test_CheckItem_ChecksItemInItemManager]' passed (1.658 seconds).
+Test Case '-[ToDoTests.DetailViewControllerTests test_HasMapView]' started.
+Test Case '-[ToDoTests.DetailViewControllerTests test_HasMapView]' passed (0.017 seconds).
+Test Case '-[ToDoTests.DetailViewControllerTests test_HasTitleLabel]' started.
+Test Case '-[ToDoTests.DetailViewControllerTests test_HasTitleLabel]' passed (0.013 seconds).
+Test Case '-[ToDoTests.DetailViewControllerTests test_SettingItemInfo_SetsTextsToLabels]' started.
+Test Case '-[ToDoTests.DetailViewControllerTests test_SettingItemInfo_SetsTextsToLabels]' passed (0.039 seconds).
+Test Suite 'DetailViewControllerTests' passed at 2019-09-27 10:46:26.434.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 1.726 (1.733) seconds
+Test Suite 'ToDoTests.xctest' passed at 2019-09-27 10:46:26.436.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 1.726 (1.735) seconds
+Test Suite 'Selected tests' passed at 2019-09-27 10:46:26.437.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 1.726 (1.739) seconds
+```
