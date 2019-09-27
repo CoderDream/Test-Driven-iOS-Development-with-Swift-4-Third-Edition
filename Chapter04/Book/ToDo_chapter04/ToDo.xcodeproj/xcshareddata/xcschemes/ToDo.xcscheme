@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3F149BCD232FCF0100EB8517"
+               BlueprintIdentifier = "F2C942C51F3F21A700EF5FE8"
                BuildableName = "ToDo.app"
                BlueprintName = "ToDo"
                ReferencedContainer = "container:ToDo.xcodeproj">
@@ -32,14 +32,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3F149BE1232FCF0300EB8517"
+               BlueprintIdentifier = "F2C942D91F3F21A700EF5FE8"
                BuildableName = "ToDoTests.xctest"
                BlueprintName = "ToDoTests"
                ReferencedContainer = "container:ToDo.xcodeproj">
             </BuildableReference>
             <SkippedTests>
                <Test
-                  Identifier = "ItemCellTests">
+                  Identifier = "DetailViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "InputViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "ItemListDataProviderTests">
                </Test>
                <Test
                   Identifier = "ItemListViewControllerTest">
@@ -59,7 +65,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3F149BCD232FCF0100EB8517"
+            BlueprintIdentifier = "F2C942C51F3F21A700EF5FE8"
             BuildableName = "ToDo.app"
             BlueprintName = "ToDo"
             ReferencedContainer = "container:ToDo.xcodeproj">
@@ -82,7 +88,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3F149BCD232FCF0100EB8517"
+            BlueprintIdentifier = "F2C942C51F3F21A700EF5FE8"
             BuildableName = "ToDo.app"
             BlueprintName = "ToDo"
             ReferencedContainer = "container:ToDo.xcodeproj">
@@ -101,7 +107,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3F149BCD232FCF0100EB8517"
+            BlueprintIdentifier = "F2C942C51F3F21A700EF5FE8"
             BuildableName = "ToDo.app"
             BlueprintName = "ToDo"
             ReferencedContainer = "container:ToDo.xcodeproj">

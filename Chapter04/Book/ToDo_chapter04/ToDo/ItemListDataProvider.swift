@@ -25,6 +25,8 @@ class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate
   
   func tableView(_ tableView: UITableView,
                  numberOfRowsInSection section: Int) -> Int {
+    
+    
     guard let itemManager =
       itemManager else { return 0 }
     guard let itemSection =
@@ -32,7 +34,9 @@ class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate
         fatalError()
     }
     
+    
     let numberOfRows: Int
+    
     
     switch itemSection {
     case .toDo:
@@ -51,7 +55,8 @@ class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate
       for: indexPath) as! ItemCell
     
     guard let itemManager = itemManager else { fatalError() }
-    guard let section = Section(rawValue: indexPath.section) else {
+    guard let section = Section(rawValue: indexPath.section) else
+    {
       fatalError()
     }
     
@@ -73,7 +78,8 @@ class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate
     titleForDeleteConfirmationButtonForRowAt indexPath:
     IndexPath) -> String? {
     
-    guard let section = Section(rawValue: indexPath.section) else {
+    guard let section = Section(rawValue: indexPath.section) else
+    {
       fatalError()
     }
     
@@ -91,10 +97,14 @@ class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate
   func tableView(_ tableView: UITableView,
                  commit editingStyle: UITableViewCell.EditingStyle,
                  forRowAt indexPath: IndexPath) {
+    
+    
     guard let itemManager = itemManager else { fatalError() }
-    guard let section = Section(rawValue: indexPath.section) else {
+    guard let section = Section(rawValue: indexPath.section) else
+    {
       fatalError()
     }
+    
     
     switch section {
     case .toDo:

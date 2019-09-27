@@ -28,8 +28,7 @@ class ItemCellTests: XCTestCase {
         
         tableView = controller.tableView
         tableView?.dataSource = dataSource
-        
-        //tableView?.register(ItemCell.self, forCellReuseIdentifier: "ItemCell")
+        tableView.register(ItemCell.self, forCellReuseIdentifier: "ItemCell")
         cell = tableView?.dequeueReusableCell(
             withIdentifier: "ItemCell",
             for: IndexPath(row: 0, section: 0)) as? ItemCell
@@ -110,7 +109,15 @@ extension ItemCellTests {
         func tableView(_ tableView: UITableView,
                        cellForRowAt indexPath: IndexPath)
             -> UITableViewCell {
-                return UITableViewCell()
+                let identifier = "ItemCell"
+                var cell = tableView.dequeueReusableCell(withIdentifier: identifier)
+                
+                if cell == nil {
+                    cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: identifier)
+                }
+                
+                return cell!
+                //return UITableViewCell()
         }
     }
 }
