@@ -39,6 +39,18 @@
             </BuildableReference>
             <SkippedTests>
                <Test
+                  Identifier = "APIClientTests/test_Login_UsesExpectedHost()">
+               </Test>
+               <Test
+                  Identifier = "APIClientTests/test_Login_UsesExpectedPath()">
+               </Test>
+               <Test
+                  Identifier = "APIClientTests/test_Login_UsesExpectedQuery()">
+               </Test>
+               <Test
+                  Identifier = "APIClientTests/test_Login_WhenSuccessful_CreatesToken()">
+               </Test>
+               <Test
                   Identifier = "DetailViewControllerTests">
                </Test>
                <Test

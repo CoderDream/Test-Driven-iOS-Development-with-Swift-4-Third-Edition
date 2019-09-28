@@ -52,21 +52,49 @@ class APIClient {
 //        }
         // 处理数据任务
         session.dataTask(with: url) { (data, response, error) in
-            // 如果数据为空，直接返回
-            guard let data = data else { return }
-            // 生成字典
-            let dict = try! JSONSerialization.jsonObject(
-                with: data,
-                options: []) as? [String:String]
-            // 生成 token 对象
-            let token: Token?
-            if let tokenString = dict?["token"] {
-                token = Token(id: tokenString)
-            } else {
-                token = nil
+//            // 如果数据为空，直接返回
+//            guard let data = data else { return }
+//            // 生成字典
+//            let dict = try! JSONSerialization.jsonObject(
+//                with: data,
+//                options: []) as? [String:String]
+//            // 生成 token 对象
+//            let token: Token?
+//            if let tokenString = dict?["token"] {
+//                token = Token(id: tokenString)
+//            } else {
+//                token = nil
+//            }
+//            completion(token, nil)
+            
+            // guard let data = data else { return }
+            
+            guard error == nil else {
+                return completion(nil, error)
             }
-            completion(token, nil)
+            
+            guard let data = data else {
+                completion(nil, WebserviceError.DataEmptyError)
+                return
+            }
+            
+            do {
+                let dict = try JSONSerialization.jsonObject(
+                    with: data,
+                    options: []) as? [String:String]
+                let token: Token?
+                if let tokenString = dict?["token"] {
+                    token = Token(id: tokenString)
+                } else {
+                    token = nil
+                }
+                completion(token, nil)
+            } catch {
+                completion(nil, error)
+            }
         }.resume()
+        
+
     }
 }
 
@@ -95,4 +123,9 @@ extension String {
             withAllowedCharacters: allowedCharacters) else { fatalError() }
         return encoded
     }
+}
+
+enum WebserviceError : Error {
+    case DataEmptyError
+    case ResponseError
 }

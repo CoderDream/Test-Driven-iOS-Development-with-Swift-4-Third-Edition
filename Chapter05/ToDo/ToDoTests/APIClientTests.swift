@@ -91,6 +91,49 @@ class APIClientTests: XCTestCase {
             XCTAssertEqual(caughtToken?.id, "1234567890")
         }
     }
+    
+    func test_Login_WhenJSONIsInvalid_ReturnsError() {
+        
+//        mockURLSession = MockURLSession(data: Data(),
+//                                        urlResponse: nil,
+//                                        error: nil)
+        mockURLSession = MockURLSession(data: nil,
+                                        urlResponse: nil,
+                                        error: nil)
+        
+        sut.session = mockURLSession
+        let errorExpectation = expectation(description: "Error")
+        var catchedError: Error? = nil
+        sut.loginUser(withName: "Foo", password: "Bar") { (token, error) in
+            catchedError = error
+            errorExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 1) { (error) in
+            XCTAssertNotNil(catchedError)
+        }
+    }
+    
+    func test_Login_WhenResponseHasError_ReturnsError() {
+        let error = NSError(domain: "SomeError",
+                            code: 1234,
+                            userInfo: nil)
+        let jsonData =
+            "{\"token\": \"1234567890\"}"
+                .data(using: .utf8)
+        mockURLSession = MockURLSession(data: jsonData,
+                                        urlResponse: nil,
+                                        error: error)
+        sut.session = mockURLSession
+        let errorExpectation = expectation(description: "Error")
+        var catchedError: Error? = nil
+        sut.loginUser(withName: "Foo", password: "Bar") { (token, error) in
+            catchedError = error
+            errorExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 1) { (error) in
+            XCTAssertNotNil(catchedError)
+        }
+    }
 }
 
 extension APIClientTests {
