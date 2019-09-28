@@ -25,6 +25,7 @@ class APIClientTests: XCTestCase {
     override func tearDown() {
     }
     
+    // 测试host
     func test_Login_UsesExpectedHost() {
         let completion = { (token: Token?, error: Error?) in }
         sut.loginUser(withName:"dasdom",
@@ -38,6 +39,7 @@ class APIClientTests: XCTestCase {
             "awesometodos.com")
     }
     
+    // 测试访问路径
     func test_Login_UsesExpectedPath() {
         let completion = { (token: Token?, error: Error?) in }
         sut.loginUser(withName:"dasdom",
@@ -51,6 +53,7 @@ class APIClientTests: XCTestCase {
             "/login")
     }
     
+    // 测试带参数的访问
     func test_Login_UsesExpectedQuery() {
         let completion = { (token: Token?, error: Error?) in }
 //        sut.loginUser(withName:"dasdom",
@@ -68,7 +71,9 @@ class APIClientTests: XCTestCase {
             "username=dasd%C3%B6m&password=%25%2634")
     }
 
+    // 测试带 token 和参数的访问
     func test_Login_WhenSuccessful_CreatesToken() {
+        // 带 token 的 json 数据
         let jsonData =
             "{\"token\": \"1234567890\"}"
                 .data(using: .utf8)
@@ -78,8 +83,7 @@ class APIClientTests: XCTestCase {
         sut.session = mockURLSession
         let tokenExpectation = expectation(description: "Token")
         var caughtToken: Token? = nil
-        sut.loginUser(withName: "Foo", password: "Bar") { token, _
-            in
+        sut.loginUser(withName: "Foo", password: "Bar") { (token, _)  in
             caughtToken = token
             tokenExpectation.fulfill()
         }
@@ -90,22 +94,26 @@ class APIClientTests: XCTestCase {
 }
 
 extension APIClientTests {
+    // 模拟URL缓存
     class MockURLSession: SessionProtocol {
         var url: URL?
         private let dataTask: MockTask
         
+        // url组件对象
         var urlComponents: URLComponents? {
             guard let url = url else { return nil }
             return URLComponents(url: url,
                                  resolvingAgainstBaseURL: true)
         }
         
+        // 初始化方法
         init(data: Data?, urlResponse: URLResponse?, error: Error?) {
             dataTask = MockTask(data: data,
                                 urlResponse: urlResponse,
                                 error: error)
         }
         
+        // 数据任务方法
         func dataTask(
             with url: URL,
             completionHandler: @escaping
@@ -114,6 +122,7 @@ extension APIClientTests {
                 self.url = url
                 print(url)
                 dataTask.completionHandler = completionHandler
+                // 返回数据任务
                 return dataTask
                 //return URLSession.shared.dataTask(with: url)
         }

@@ -40,8 +40,9 @@ class APIClient {
 //            "https://awesometodos.com/login?\(query)") else {
 //                fatalError()
 //        }
-        
+        // 查询条件，包含用户名和密码（已编码）
         let query = "username=\(username.percentEncoded)&password=\(password.percentEncoded)"
+        // 创建 url 对象
         guard let url = URL(string:
             "https://awesometodos.com/login?\(query)") else {
                 fatalError()
@@ -49,12 +50,15 @@ class APIClient {
         
 //        session.dataTask(with: url) { (data, response, error) in
 //        }
-        
+        // 处理数据任务
         session.dataTask(with: url) { (data, response, error) in
+            // 如果数据为空，直接返回
             guard let data = data else { return }
+            // 生成字典
             let dict = try! JSONSerialization.jsonObject(
                 with: data,
                 options: []) as? [String:String]
+            // 生成 token 对象
             let token: Token?
             if let tokenString = dict?["token"] {
                 token = Token(id: tokenString)
@@ -62,13 +66,13 @@ class APIClient {
                 token = nil
             }
             completion(token, nil)
-            }.resume()
+        }.resume()
     }
 }
 
-
-
+// 缓存协议
 protocol SessionProtocol {
+    // 数据任务接口方法
     func dataTask(
         with url: URL,
         completionHandler: @escaping
@@ -76,10 +80,12 @@ protocol SessionProtocol {
         -> URLSessionDataTask
 }
 
+// 让 URLSession 实现 缓存协议
 extension URLSession: SessionProtocol {
     
 }
 
+// 扩展 String，让字符串处理特殊字符
 extension String {
     var percentEncoded: String {
         let allowedCharacters = CharacterSet(
