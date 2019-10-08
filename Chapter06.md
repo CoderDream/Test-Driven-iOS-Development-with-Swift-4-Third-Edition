@@ -2,6 +2,9 @@
 
 ## The initial view controller
 
+Open Main.storyboard, select the item list view controller and open the AttributeInspector. Check the checkbox next to Is Initial View Controller, as shown in the following. 
+With the item list view controller still selected, navigate to Editor | Embed In | Navigation Controller. With these changes in the storyboard, the initial view controller will be a navigation controller with an instance of ItemListViewController as its root view controller.
+
 - StoryboardTests.swift
 ```swift
 import XCTest
