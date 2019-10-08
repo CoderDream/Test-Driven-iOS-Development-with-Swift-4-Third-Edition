@@ -13,7 +13,11 @@ enum Section: Int {
   case done
 }
 
-class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate {
+@objc protocol ItemManagerSettable {
+    var itemManager: ItemManager? { get set }
+}
+
+class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate, ItemManagerSettable {
   
   var itemManager: ItemManager?
   
@@ -115,3 +119,4 @@ class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate
     tableView.reloadData()
   } 
 }
+
